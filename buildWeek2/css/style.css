@@ -1,0 +1,23 @@
+/* Nasconde la scrollbar per Chrome/Safari/Edge, mantenendo l'overflow-auto di Bootstrap */
+.airbnb-track::-webkit-scrollbar {
+  display: none;
+}
+
+.img-wrapper {
+  aspect-ratio: 20 / 19; 
+  overflow: hidden;
+}
+
+
+.img-wrapper img {
+  height: 100%;
+}
+
+.drop-shadow {
+  filter: drop-shadow(0px 0px 2px rgba(0,0,0,0.5));
+}
+
+.airbnb-track{
+    scroll-behavior: smooth;
+    scrollbar-width: none
+}
