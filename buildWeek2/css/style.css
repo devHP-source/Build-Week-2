@@ -20,6 +20,13 @@
   scroll-behavior: smooth;
   scrollbar-width: none;
 }
+.badge-love {
+  font-size: 0.8rem;
+  color: rgb(76, 76, 76);
+}
+.card-mostra-tutto {
+  cursor: pointer;
+}
 nav {
   padding: 20px 60px;
   display: flex;
