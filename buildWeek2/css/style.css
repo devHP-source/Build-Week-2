@@ -1,4 +1,45 @@
-/* Nasconde la scrollbar per Chrome/Safari/Edge, mantenendo l'overflow-auto di Bootstrap */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+/* FONTS:  
+font-family: "Raleway", sans-serif; ----> MOLTO SIMILE ad OFFICIAL AIRBNB
+font-family: "Nunito Sans", sans-serif; ----> Anche questa
+font-family: "Montserrat", sans-serif;
+*/
+
+:root {
+  /* COLORS */
+  --hero-bg-color: #fbfbfb;
+  --background-color: #ffffff;
+  --search-bg-color: #e10c41;
+  --footer-bg-color: #f7f7f7;
+
+  /* PADDING laterale lo condividono:
+  * <nav>
+  * <main>
+  * <footer>
+  * Cambia SOLO il valore per stringere o callargare tutta la pagina. */
+  --page-gutter: 3.75rem; /* 60px */
+}
+
+/* Per schermi piccoli */
+@media (max-width: 575.98px) {
+  :root {
+    --page-gutter: 24px;
+  }
+}
+
+/* GENERALE */
+body {
+  font-family: "Raleway", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+main {
+  padding-inline: var(--page-gutter);
+  flex-grow: 1;
+}
+
+/* Nasconde la scrollbar per: Chrome, Safari, Edge */
 .airbnb-track::-webkit-scrollbar {
   display: none;
 }
@@ -22,7 +63,7 @@
   scrollbar-width: none;
 }
 nav {
-  padding: 20px 60px;
+  padding: 20px var(--page-gutter);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -37,7 +78,6 @@ nav {
 }
 
 /* NAVBAR CENTRALE */
-
 .nav-center {
   display: flex;
   align-items: center;
@@ -81,7 +121,6 @@ nav {
 }
 
 /* MENU DESTRA */
-
 .nav-right {
   display: flex;
   align-items: center;
@@ -98,7 +137,6 @@ nav {
 
   transition: 0.2s ease;
 }
-
 .host-btn:hover {
   transform: translateY(-2px);
 }
@@ -117,13 +155,11 @@ nav {
 
   transition: 0.2s ease;
 }
-
 .menu-container:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* SEARCH BAR */
-
 .search-bar {
   width: 850px;
   height: 70px;
@@ -152,12 +188,10 @@ nav {
 
   transition: 0.2s ease;
 }
-
 .search-item:hover {
   background-color: #f7f7f7;
   border-radius: 999px;
 }
-
 .search-item:not(:last-child) {
   border-right: 1px solid #dddddd;
 }
@@ -190,13 +224,11 @@ nav {
 
   cursor: pointer;
 }
-
 .search-btn:hover {
   background-color: #e31c5f;
 }
 
 /* DROPDOWN JS */
-
 .dropdown-container {
   width: 850px;
   margin: 0 auto;
@@ -204,19 +236,14 @@ nav {
   position: relative;
 }
 
-/* GENERALE */
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-
+/* SECTION */
 .airbnb-track{
     scroll-behavior: smooth;
     scrollbar-width: none
 }
 
-.badge-love{
+.badge-love{ /* HEART */
   font-size: 0.8rem;
   color: rgb(76, 76, 76);
 }
@@ -224,4 +251,84 @@ body {
 .card-mostra-tutto{
   cursor: pointer;
   aspect-ratio: 4 / 3;
+}
+
+/* FOOTER SECTION */
+.airbnb-footer {
+  background-color: var(--footer-bg-color);
+  color: #222222;
+  font-family: -apple-system, BlinkMacSystemFont, "Montserrat", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+
+  flex-shrink: 0;
+}
+
+
+.airbnb-footer .container {
+  max-width: 100%; 
+  padding-inline: var(--page-gutter);
+}
+
+/* Links */
+.airbnb-footer a {
+  color: #222222;
+  text-decoration: none;
+}
+.airbnb-footer a:hover {
+  text-decoration: underline;
+}
+
+.airbnb-footer h5 {
+  font-size: 14px;
+  margin-bottom: 1rem;
+}
+
+.airbnb-footer ul {
+  padding-left: 0;
+  list-style: none;
+  margin-bottom: 0;
+}
+
+.airbnb-footer ul li {
+  margin-bottom: 0.75rem;
+}
+
+.footer-main-divider {
+  margin: 2rem 0;
+  border-top: 1px solid #dddddd;
+  opacity: 1;
+}
+
+.footer-mobile-divider {
+  margin: 1.5rem 0;
+  border-top: 1px solid #dddddd;
+  opacity: 1;
+}
+
+.btn-clean {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #222222;
+  cursor: pointer;
+}
+
+.btn-clean:hover {
+  text-decoration: underline;
+}
+
+/* Ionicons Size */
+.social-icons ion-icon {
+  font-size: 1.25rem;
+  color: #222222;
+}
+
+.settings-social-wrap {
+    width: 100%;
+}
+
+@media (min-width: 992px) {
+    .settings-social-wrap {
+        width: auto;
+    }
 }
