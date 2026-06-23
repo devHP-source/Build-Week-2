@@ -221,7 +221,85 @@ body {
   color: rgb(76, 76, 76);
 }
 
-.card-mostra-tutto{
-  cursor: pointer;
-  aspect-ratio: 4 / 3;
+
+
+.card-show-all {
+    cursor: pointer;
+    aspect-ratio: 4 / 3;
+    background-color: #f7f7f7;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    animation: showAllEntrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0; 
+}
+
+
+.card-show-all:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+
+.collage-container {
+    width: 130px;
+    height: 75px;
+    position: relative; 
+    margin-top: 15px;
+}
+
+.collage-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #ffffff; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); 
+    position: absolute;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+.img-left {
+    top: 12px;
+    left: 12px;
+    transform: rotate(-12deg);
+    z-index: 1;
+}
+
+.img-right {
+    top: 12px;
+    right: 12px;
+    transform: rotate(12deg);
+    z-index: 2;
+}
+
+.img-center {
+    top: 4px;
+    left: 35px;
+    transform: rotate(0deg);
+    z-index: 3;
+}
+
+.card-show-all:hover .img-left {
+    left: 0px;
+    transform: rotate(-22deg);
+}
+
+.card-show-all:hover .img-right {
+    right: 0px;
+    transform: rotate(22deg);
+}
+
+.card-show-all:hover .img-center {
+    top: -2px;
+    transform: scale(1.06) rotate(0deg);
+}
+
+@keyframes showAllEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
