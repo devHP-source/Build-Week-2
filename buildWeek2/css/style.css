@@ -4,7 +4,7 @@
 }
 
 .img-wrapper {
-  aspect-ratio: 20 / 19; 
+  aspect-ratio: 4 / 3;
   overflow: hidden;
 }
 
@@ -20,4 +20,14 @@
 .airbnb-track{
     scroll-behavior: smooth;
     scrollbar-width: none
+}
+
+.badge-love{
+  font-size: 0.8rem;
+  color: rgb(76, 76, 76);
+}
+
+.card-mostra-tutto{
+  cursor: pointer;
+  aspect-ratio: 4 / 3;
 }
