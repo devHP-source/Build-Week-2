@@ -1,6 +1,6 @@
-const dove = document.getElementById("where-btn")
-const dateBtn = document.getElementById("date-btn")
-const dropdown = document.getElementById("dropdown-container")
+const dove = document.getElementById("where-btn");
+const dateBtn = document.getElementById("date-btn");
+const dropdown = document.getElementById("dropdown-container");
 
 dove.addEventListener("click", () => {
   dropdown.classList.toggle("open");
@@ -18,19 +18,19 @@ dove.addEventListener("click", () => {
   </div>
   `;
 });
-let giorniGiugno = ""
+let giorniGiugno = "";
 
 for (let i = 1; i <= 30; i++) {
-  giorniGiugno += `<button class="day-btn">${i}</button>`
+  giorniGiugno += `<button class="day-btn">${i}</button>`;
 }
 
-let giorniLuglio = ""
+let giorniLuglio = "";
 
 for (let i = 1; i <= 31; i++) {
-  giorniLuglio += `<button class="day-btn">${i}</button>`
+  giorniLuglio += `<button class="day-btn">${i}</button>`;
 }
 dateBtn.addEventListener("click", () => {
-  dropdown.classList.toggle("open")
+  dropdown.classList.toggle("open");
 
   dropdown.innerHTML = `
     <div class="calendar-menu">
@@ -88,5 +88,35 @@ dateBtn.addEventListener("click", () => {
       </div>
 
     </div>
-  `
+  `;
+});
+const guestBtn = document.getElementById("guest-btn")
+guestBtn.addEventListener("click", () => {
+  dropdown.classList.toggle("open")
+
+ dropdown.innerHTML = `
+  <div class="guest-menu">
+
+    <div class="guest-row">
+      <span>Adulti</span>
+
+      <div class="counter">
+        <button>-</button>
+        <span>0</span>
+        <button>+</button>
+      </div>
+    </div>
+
+    <div class="guest-row">
+      <span>Bambini</span>
+
+      <div class="counter">
+        <button>-</button>
+        <span>0</span>
+        <button>+</button>
+      </div>
+    </div>
+
+  </div>
+`
 })

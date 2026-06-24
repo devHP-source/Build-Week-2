@@ -240,7 +240,6 @@ nav {
     opacity: 1;
     transform: translateY(0);
   }
-
 }
 
 .fade-item:nth-child(1) {
@@ -339,12 +338,62 @@ nav {
   border-radius: 12px;
 
   cursor: pointer;
-  
 }
 .destination-btn:hover {
   background-color: #f7f7f7;
 }
+.guest-menu {
+  width: 400px;
 
+  background: white;
+
+  border-radius: 24px;
+
+  padding: 20px;
+
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.guest-row {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding: 15px 0;
+}
+
+.guest-row:not(:last-child) {
+  border-bottom: 1px solid #ebebeb;
+}
+
+.counter {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+.counter button {
+  width: 32px;
+  height: 32px;
+
+  border-radius: 50%;
+
+  border: 1px solid #b0b0b0;
+
+  background: white;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.counter button:hover {
+  background-color: #f7f7f7;
+}
 /* GENERALE */
 
 body {
