@@ -204,10 +204,145 @@ nav {
 /* DROPDOWN JS */
 
 .dropdown-container {
-  width: 850px;
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
 
-  position: relative;
+  margin-top: 10px;
+
+  opacity: 0;
+  transform: translateY(-120px);
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.45s ease,
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dropdown-container.open {
+  opacity: 1;
+  transform: translateY(0);
+
+  pointer-events: auto;
+}
+.fade-item {
+  opacity: 0;
+  animation: fadeUp 0.5s forwards;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+.fade-item:nth-child(1) {
+  animation-delay: 0s;
+}
+.fade-item:nth-child(2) {
+  animation-delay: 0.3s;
+}
+.fade-item:nth-child(3) {
+  animation-delay: 0.6s;
+}
+.fade-item:nth-child(4) {
+  animation-delay: 0.9s;
+}
+
+.calendar-menu {
+  width: 800px;
+
+  background-color: white;
+
+  border-radius: 24px;
+
+  padding: 20px;
+
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+.months-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.month {
+  flex: 1;
+}
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+
+  margin-top: 20px;
+
+  text-align: center;
+
+  font-size: 0.9rem;
+
+  font-weight: 600;
+}
+.days-grid {
+  display: grid;
+
+  grid-template-columns: repeat(7, 1fr);
+
+  gap: 8px;
+
+  margin-top: 15px;
+
+  text-align: center;
+}
+.day-btn {
+  border: none;
+  background: transparent;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  transition: background-color 0.2s ease;
+}
+.day-btn:hover {
+  background-color: #f2f2f2;
+}
+.destination-menu {
+  width: 400px;
+  background-color: white;
+  border-radius: 24px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.destination-btn {
+  display: block;
+
+  width: 100%;
+
+  text-align: left;
+
+  border: none;
+
+  background: transparent;
+
+  padding: 12px;
+
+  border-radius: 12px;
+
+  cursor: pointer;
+  
+}
+.destination-btn:hover {
+  background-color: #f7f7f7;
 }
 
 /* GENERALE */
