@@ -40,11 +40,6 @@ main {
   flex-grow: 1;
 }
 
-/* Nasconde la scrollbar per: Chrome, Safari, Edge */
-.airbnb-track::-webkit-scrollbar {
-  display: none;
-}
-
 .img-wrapper {
   aspect-ratio: 4 / 3;
   overflow: hidden;
@@ -60,22 +55,35 @@ main {
 
 /* Freccia accanto al titolo della sezione */
 .places-title .title-arrow {
-  font-size: 0.85rem;   
-  padding: 0.4rem;              
+  font-size: 0.85rem;
+  padding: 0.4rem;
   border-radius: 50%;
   background-color: var(--nav-bg-color);
   color: #222222;
   vertical-align: middle;
   box-sizing: content-box;
+  flex-shrink: 0;
 }
 
+/* Carousel: scroll fluido + scrollbar nascosta su tutti i browser */
 .airbnb-track {
   scroll-behavior: smooth;
-  scrollbar-width: none;
+  scrollbar-width: none; /* Firefox + standard */
+}
+.airbnb-track::-webkit-scrollbar {
+  display: none; /* per: Chrome, Safari, Edge */
 }
 
+.places-title {
+  min-width: 0;
+}
 
-/* Frecce del carosello (prev/next) */
+.carousel-controls {
+  display: flex;
+  flex-shrink: 0;
+  margin-left: 1rem;
+}
+
 .carousel-controls .btn {
   width: 32px;
   height: 32px;
@@ -95,7 +103,7 @@ nav {
   align-items: center;
 
   border-bottom: 1px solid #ebebeb;
-  background-color: rgb(246, 246, 246);
+  background-color: var(--nav-bg-color);
 }
 
 .logo img {
@@ -461,11 +469,6 @@ nav {
 }
 
 /* SECTION */
-.airbnb-track{
-    scroll-behavior: smooth;
-    scrollbar-width: none
-}
-
 .badge-love{ /* HEART */
   font-size: 0.8rem;
   color: rgb(76, 76, 76);
