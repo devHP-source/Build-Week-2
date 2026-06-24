@@ -269,15 +269,20 @@ nav {
 
 /* DROPDOWN JS */
 .dropdown-container {
+  position: absolute;
+
+  top: 230px;
+  left: 50%;
+
+  transform: translateX(-50%) translateY(-120px);
+
   display: flex;
   justify-content: center;
 
-  margin-top: 10px;
-
   opacity: 0;
-  transform: translateY(-120px);
-
   pointer-events: none;
+
+  z-index: 9999;
 
   transition:
     opacity 0.45s ease,
@@ -286,10 +291,14 @@ nav {
 
 .dropdown-container.open {
   opacity: 1;
-  transform: translateY(0);
+
+  transform: translateX(-50%) translateY(0);
 
   pointer-events: auto;
 }
+
+  
+
 .fade-item {
   opacity: 0;
   animation: fadeUp 0.5s forwards;
