@@ -8,6 +8,7 @@ font-family: "Montserrat", sans-serif;
 :root {
   /* COLORS */
   --hero-bg-color: #fbfbfb;
+  --nav-bg-color: #f6f6f6;
   --background-color: #ffffff;
   --search-bg-color: #e10c41;
   --footer-bg-color: #f7f7f7;
@@ -20,7 +21,7 @@ font-family: "Montserrat", sans-serif;
   --page-gutter: 3.75rem; /* 60px */
 }
 
-/* Per schermi piccoli */
+/* Per schermi piccoli: padding size */
 @media (max-width: 575.98px) {
   :root {
     --page-gutter: 24px;
@@ -45,7 +46,6 @@ main {
 }
 
 .img-wrapper {
-  /* aspect-ratio: 20 / 19; */
   aspect-ratio: 4 / 3;
   overflow: hidden;
 }
@@ -58,9 +58,33 @@ main {
   filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.5));
 }
 
+/* Freccia accanto al titolo della sezione */
+.places-title .title-arrow {
+  font-size: 0.85rem;   
+  padding: 0.4rem;              
+  border-radius: 50%;
+  background-color: var(--nav-bg-color);
+  color: #222222;
+  vertical-align: middle;
+  box-sizing: content-box;
+}
+
 .airbnb-track {
   scroll-behavior: smooth;
   scrollbar-width: none;
+}
+
+/* Frecce del carosello (prev/next) */
+.carousel-controls .btn {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.carousel-controls .btn i {
+  font-size: 0.85rem;
 }
 nav {
   padding: 20px var(--page-gutter);
@@ -144,19 +168,32 @@ nav {
 .menu-container {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 12px;
+}
 
-  padding: 10px 15px;
+/* GLOBE and HAMBURGER MENU - ICONS */
+.icon-btn {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   border: 1px solid #ddd;
-  border-radius: 50px;
+  border-radius: 50%;
+  background-color: #f7f7f7;
 
   cursor: pointer;
 
   transition: 0.2s ease;
 }
-.menu-container:hover {
+.icon-btn:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+.menu-container ion-icon {
+  font-size: 1.25rem;
+  color: #222222;
 }
 
 /* SEARCH BAR */
@@ -217,7 +254,7 @@ nav {
   border: none;
   border-radius: 50%;
 
-  background-color: #ff385c;
+  background-color: var(--search-bg-color);
   color: white;
 
   font-size: 18px;
@@ -334,6 +371,27 @@ nav {
 }
 
 
+/* CATEGORY SECTION*/
+.esperienza-card {
+  width: 130px;
+}
+.esperienza-img-wrapper {
+  aspect-ratio: 1 / 1;
+}
+.esperienza-img-wrapper img {
+  display: block;
+}
+.esperienza-title {
+  font-size: 0.9rem;
+  line-height: 1.2;
+}
+
+/* NASCONDE le frecce in modalità: SOLO MOBILE */
+@media (max-width: 575.98px) {
+  .carousel-controls {
+    display: none;
+  }
+}
 
 /* FOOTER SECTION */
 .airbnb-footer {
