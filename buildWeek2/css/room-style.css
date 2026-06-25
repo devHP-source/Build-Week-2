@@ -1,0 +1,220 @@
+main {
+    margin: 2em 0em 2em 0em;
+    font-family: "Figtree", sans-serif;
+    font-weight: 300;
+}
+
+.container{
+    padding: 0em 6em 0em 6em;
+}
+
+.title-row {
+    display: flex;
+    align-items: start;
+}
+
+.title-row h2 {
+    font-weight: 500;
+    font-size: 20pt;
+    display: flex;
+}
+
+.title-row>div p {
+    font-size: 10pt;
+}
+
+.icon-container>div a {
+    color: black;
+    font-size: 11pt;
+    font-weight: 500;
+}
+
+#airbnb-grid {
+    height: 400px;
+    margin-top: 20px;
+    margin-bottom: 2em;
+}
+
+
+#airbnb-grid>.col-md-6 {
+    height: 100%;
+}
+
+
+.main-img-container,
+.small-img-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+
+.small-img-container {
+    height: 50%;
+}
+
+
+#airbnb-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.rounded-top-end {
+    border-top-right-radius: 12px;
+}
+
+.rounded-bottom-end {
+    border-bottom-right-radius: 12px;
+}
+
+.rounded-start {
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.svg-star {
+    width: .6em;
+}
+
+#info-room h4 {
+    font-weight: 500;
+    font-size: 16pt;
+}
+
+#info-host span,
+#host span,
+#calendar span {
+    font-size: 10pt;
+    color: rgb(130, 130, 130);
+    display: block;
+    margin-top: -0.9em;
+}
+
+.host-name {
+    font-weight: 500;
+    font-size: 12pt;
+}
+
+.host-propic {
+    width: 40px;
+}
+
+.info-titles {
+    font-weight: 500;
+    line-height: 1;
+}
+
+#description button,
+#house-info button {
+    background-color: rgb(246, 246, 246);
+}
+
+hr {
+    background-color: rgb(246, 246, 246);
+}
+
+#bedrooom-info div {
+    width: 12em;
+}
+
+#bedrooom-info p {
+    font-size: 11pt;
+}
+
+#calendar button {
+    outline: none;
+    border: none;
+    height: 35px;
+    width: 35px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#calendar button:hover {
+    background-color: rgb(246, 246, 246);
+
+}
+
+.week {
+    letter-spacing: 1.2em;
+    font-size: small;
+    color: rgb(134, 134, 134);
+    text-align: center;
+    padding-left: 1.2em;
+}
+
+#check-dates>div {
+    border: 1px solid rgb(246, 246, 246);
+    border-radius: 20px;
+    width: 390px;
+    height: 340px;
+    background-color: white;
+    padding: 2em;
+    box-shadow: 0px 5px 10px rgba(197, 197, 197, 0.579);
+}
+
+#check-dates h4 {
+    font-size: 17pt;
+}
+
+#check-dates {
+    height: 205vh;
+}
+
+#sticky-element {
+    position: sticky;
+    top: 100px;
+    z-index: 999;
+}
+
+#sticky-element h4 {
+    margin-bottom: .8em;
+}
+
+#sticky-element strong {
+    font-size: 8pt;
+    font-weight: 600;
+}
+
+#sticky-element p {
+    font-size: 11pt;
+    color: rgb(130, 130, 130);
+}
+.dropdown-toggle::after {
+    display: none !important;
+}
+#dropdown-guests{
+    border-radius: 10px;
+}
+.form-container-border{
+    border-radius: 10px;
+}
+.form-btn-container{
+    padding: 0;
+}
+#available-dates-btn{
+    padding: .5em 1em .5em 1em;
+    border-radius: 50px;
+    font-size: large;
+    font-weight: 500;
+    background: linear-gradient(to right, rgba(230, 29, 78), rgba(215, 6, 102));
+}
+#sticky-element a{
+    font-weight: 500;
+    font-size: 11pt;
+}
+.truncate-overflow{
+    display: -webkit-box;
+    max-width: 450px;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+#users-reviews a {
+    color: rgb(68, 68, 68) ;
+    font-weight: 500;
+}

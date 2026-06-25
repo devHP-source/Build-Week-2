@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/room-style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+
+    <title>Room</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="./assets/logo-pink.png" alt="Airbnb Logo" />
+            </div>
+
+            <div class="nav-center">
+                <div class="nav-item active" id="all-btn">
+                    <img src="./assets/icons/earth.png" alt="Tutto" />
+                    <span>Tutto</span>
+                </div>
+
+                <div class="nav-item" id="home-btn">
+                    <img src="./assets/icons/house.png" alt="Alloggi" />
+                    <span>Alloggi</span>
+                </div>
+
+                <div class="nav-item" id="exp-btn">
+                    <img src="./assets/icons/hot-air-balloon.png" alt="Esperienze" />
+                    <span>Esperienze</span>
+                </div>
+
+                <div class="nav-item" id="service-btn">
+                    <img src="./assets/icons/bell.png" alt="Servizi" />
+                    <span>Servizi</span>
+                </div>
+            </div>
+
+            <div class="nav-right">
+                <button class="host-btn">Inizia a ospitare</button>
+
+                <div class="menu-container">
+                    <i class="bi bi-globe"></i>
+                    <i class="bi bi-list"></i>
+                </div>
+            </div>
+        </nav>
+
+        <section class="search-bar d-none">
+            <div class="search-item" id="where-btn">
+                <h6>Dove</h6>
+                <p>Cerca destinazioni</p>
+            </div>
+
+            <div class="search-item" id="date-btn">
+                <h6>Date</h6>
+                <p>Aggiungi date</p>
+            </div>
+
+            <div class="search-item" id="guest-btn">
+                <h6>Chi</h6>
+                <p>Aggiungi ospiti</p>
+            </div>
+
+            <button class="search-btn">
+                <i class="bi bi-search"></i>
+            </button>
+        </section>
+        <div id="dropdown-container" class="dropdown-container"></div>
+    </header>
+    <main>
+        <section id="room-grid">
+            <div class="container">
+                <div id="title-container" class="row d-flex align-items-center">
+                    <div class="title-row col d-flex ">
+                        <button class="btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true"
+                                role="presentation" focusable="false"
+                                style="display: block; height: 24px; width: 24px; fill: currentcolor;">
+                                <path
+                                    d="M9 0a1 1 0 0 1 1 .88V6h5a1 1 0 0 1 1 .88V15a1 1 0 0 1-.88 1H7a1 1 0 0 1-1-.88V10H1a1 1 0 0 1-1-.88V1a1 1 0 0 1 .88-1H9zm1.73 7-1.4.5.24.21.13.13c.12.13.23.25.3.36l.08.1.05.07.04.08H7.31v1.3h1.2l.17.53.1.26.1.3A6.3 6.3 0 0 0 10 12.61c-.5.32-1.12.61-1.87.87l-.33.11-.35.11-.44.14.72 1.15.4-.13.4-.12c1-.35 1.83-.76 2.48-1.22.57.4 1.28.77 2.12 1.08l.37.14.38.12.41.13.72-1.15-.45-.14-.26-.08-.34-.11a9.23 9.23 0 0 1-1.94-.9 6.3 6.3 0 0 0 1.07-1.7l.13-.31.11-.33.17-.52h1.2V8.45h-3.05l-.1-.23A3.7 3.7 0 0 0 11 7.3l-.12-.15-.14-.15zm1.35 2.76-.04.13-.08.22-.1.27a4.99 4.99 0 0 1-.86 1.38 4.95 4.95 0 0 1-.74-1.13l-.12-.25-.1-.27-.08-.22-.04-.13h2.16zM9 1H1v8h5V7l.01-.17H3.83L3.43 8H2l2.26-6h1.48l1.5 4H9V1zM5 3.41 4.25 5.6h1.5L5 3.41z">
+                                </path>
+                            </svg>
+                        </button>
+                        <h2 class="text-nowrap">Minicasa Crabtree</h2>
+                    </div>
+                    <div class="icon-container col d-flex justify-content-end">
+                        <div class="d-flex align-items-center">
+                            <button class="btn">
+                                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                                    role="presentation" focusable="false"
+                                    style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 3; overflow: visible;">
+                                    <path
+                                        d="m27 18v9c0 1.1046-.8954 2-2 2h-18c-1.10457 0-2-.8954-2-2v-9m11-15v21m-10-11 9.2929-9.29289c.3905-.39053 1.0237-.39053 1.4142 0l9.2929 9.29289"
+                                        fill="none"></path>
+                                </svg>
+                            </button>
+                            <a class="d-sm-none d-md-inline" href="#" type="link">Condividi</a>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <button class="btn"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"
+                                    aria-hidden="true" role="presentation" focusable="false"
+                                    style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 3; overflow: visible;">
+                                    <path
+                                        d="m15.9998 28.6668c7.1667-4.8847 14.3334-10.8844 14.3334-18.1088 0-1.84951-.6993-3.69794-2.0988-5.10877-1.3996-1.4098-3.2332-2.11573-5.0679-2.11573-1.8336 0-3.6683.70593-5.0668 2.11573l-2.0999 2.11677-2.0988-2.11677c-1.3995-1.4098-3.2332-2.11573-5.06783-2.11573-1.83364 0-3.66831.70593-5.06683 2.11573-1.39955 1.41083-2.09984 3.25926-2.09984 5.10877 0 7.2244 7.16667 13.2241 14.3333 18.1088z">
+                                    </path>
+                                </svg></button>
+                            <a class="d-sm-none d-md-inline" href="#" type="link">Salva</a>
+                        </div>
+                    </div>
+                </div>
+                <div id="airbnb-grid" class="row g-2">
+                    <div class="col-md-6">
+                        <div class="main-img-container h-100">
+                            <img src="./assets/1.webp" class="img-fluid rounded-start" alt="Main">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row g-2 h-100">
+                            <div class="col-6 d-flex flex-column gap-2 h-100">
+                                <div class="small-img-container flex-grow-1">
+                                    <img src="./assets/2.webp" class="img-fluid" alt="Img 2">
+                                </div>
+                                <div class="small-img-container flex-grow-1">
+                                    <img src="./assets/3.webp" class="img-fluid" alt="Img 3">
+                                </div>
+                            </div>
+                            <div class="col-6 d-flex flex-column gap-2 h-100">
+                                <div class="small-img-container flex-grow-1">
+                                    <img src="./assets/4.webp" class="img-fluid rounded-top-end" alt="Img 4">
+                                </div>
+                                <div class="small-img-container flex-grow-1">
+                                    <img src="./assets/5.webp" class="img-fluid rounded-bottom-end" alt="Img 5">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="infos-dates">
+            <div class="container">
+                <div class="row">
+                    <div id="info-room" class="col-7">
+                        <div id="title" class="my-4">
+                            <h4 class="text-nowrap">Crabtree, Australia. Intero alloggio: chalet</h4>
+                            <p>2 ospiti · Monolocale · 1 letto · 1 bagno</p>
+                            <div class="d-flex align-items-center">
+                                <div class="pe-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="svg-star bi bi-star-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                    </svg>
+                                </div>
+                                <span class=" fw-medium">Novità · 2 recensioni</span>
+                            </div>
+                        </div>
+                        <hr>
+                        <div id="host" class="d-flex align-items-center my-4">
+                            <div class="pe-4"><img class="host-propic" src="./assets/propic.png" alt=""></div>
+                            <div>
+                                <p class="host-name">Nome dell'host: Craig</p>
+                                <span>Superhost · 6 anni da host</span>
+                            </div>
+                        </div>
+                        <hr>
+                        <div id="info-host" class="my-4">
+                            <div class="d-flex mb-3 align-items-center">
+                                <div class="ps-2 pe-4"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
+                                        aria-hidden="true" role="presentation" focusable="false"
+                                        style="display: block; height: 24px; width: 24px; fill: currentcolor;">
+                                        <path
+                                            d="M24.33 1.67a2 2 0 0 1 2 1.85v24.81h3v2H2.67v-2h3V3.67a2 2 0 0 1 1.85-2h.15zm-4 2H7.67v24.66h12.66zm4 0h-2v24.66h2zm-7 11a1.33 1.33 0 1 1 0 2.66 1.33 1.33 0 0 1 0-2.66z">
+                                        </path>
+                                    </svg></div>
+                                <div class="ps-2">
+                                    <p class="info-titles">Self check-in</p>
+                                    <span>Esegui autonomamente il check-in usando la cassetta di sicurezza.</span>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="ps-2 pe-4"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
+                                        aria-hidden="true" role="presentation" focusable="false"
+                                        style="display: block; height: 24px; width: 24px; fill: currentcolor;">
+                                        <path
+                                            d="M16 17a7 7 0 1 1 0 14 7 7 0 0 1 0-14zm0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10zM25.67.33a2 2 0 0 1 2 1.85v6.54a2 2 0 0 1-.97 1.7l-.14.08-9.67 4.84a2 2 0 0 1-1.61.07l-.17-.07-9.67-4.84a2 2 0 0 1-1.1-1.62V2.33a2 2 0 0 1 1.84-2h.15zm0 2H6.33v6.39L16 13.55l9.67-4.83z">
+                                        </path>
+                                    </svg></div>
+                                <div class="ps-2">
+                                    <p class="info-titles">Craig è Superhost.</p>
+                                    <span>I Superhost sono host con esperienza e valutazioni molto alte.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div id="description" class="my-5">
+                            <p class="">Questa affascinante piccola capanna restaurata da "raccoglitore" è arroccata tra
+                                una
+                                pittoresca valle rurale e il confine con la natura selvaggia. Un ambiente isolato e
+                                tranquillo con ampia vista sulla valle sottostante e sulle colline boscose circostanti
+                                in lontananza. Un punto di osservazione perfetto per l'aurora australe, se sei
+                                fortunato! Questa baita autosufficiente è un luogo dove rallentare, distendersi,
+                                rilassarsi e vivere un mondo lontano da quello da cui vieni.</p>
+                            <p class="fw-medium">Lo spazio...</p>
+                            <button class="btn px-4 py-2 rounded-3 fw-medium">Mostra altro</button>
+                        </div>
+                        <hr>
+                        <div id="bedrooom-info" class="my-5">
+                            <h4 class="pb-3">Dove dormirai</h4>
+                            <div class="border rounded-3 p-3 d-flex flex-column">
+                                <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true"
+                                        role="presentation" focusable="false"
+                                        style="display: block; height: 24px; width: 24px; fill: currentcolor;">
+                                        <path
+                                            d="M28 4a2 2 0 0 1 2 1.85v7.99l1.85 5.54a3 3 0 0 1 .11.46l.03.24.01.24V30h-2v-2H2v2H0v-9.68a3 3 0 0 1 .09-.71l.06-.23L2 13.84V6a2 2 0 0 1 1.7-1.98l.15-.01L4 4zm2 18H2v4h28zm-1.39-6H3.4l-1.34 4h27.9zM28 6H4v8h2v-4a2 2 0 0 1 1.85-2H24a2 2 0 0 1 2 1.85V14h2zm-13 4H8v4h7zm9 0h-7v4h7z">
+                                        </path>
+                                    </svg></span>
+                                <h6 class="py-3">Zona notte</h6>
+                                <p>1 letto matrimoniale a due piazze (152 x 203)</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div id="house-info" class="my-5">
+                            <h4 class="pb-3">Cosa troverai</h4>
+                            <div class="row pb-3">
+                                <div class="col">
+                                    <div class="d-flex">
+                                        <span class="pe-4"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
+                                                aria-hidden="true" role="presentation" focusable="false"
+                                                style="display: block; height: 24px; width: 24px; fill: currentcolor;">
+                                                <path
+                                                    d="M26 1a5 5 0 0 1 5 5c0 6.39-1.6 13.19-4 14.7V31h-2V20.7c-2.36-1.48-3.94-8.07-4-14.36v-.56A5 5 0 0 1 26 1zm-9 0v18.12c2.32.55 4 3 4 5.88 0 3.27-2.18 6-5 6s-5-2.73-5-6c0-2.87 1.68-5.33 4-5.88V1zM2 1h1c4.47 0 6.93 6.37 7 18.5V21H4v10H2zm14 20c-1.6 0-3 1.75-3 4s1.4 4 3 4 3-1.75 3-4-1.4-4-3-4zM4 3.24V19h4l-.02-.96-.03-.95C7.67 9.16 6.24 4.62 4.22 3.36L4.1 3.3zm19 2.58v.49c.05 4.32 1.03 9.13 2 11.39V3.17a3 3 0 0 0-2 2.65zm4-2.65V17.7c.99-2.31 2-7.3 2-11.7a3 3 0 0 0-2-2.83z">
+                                                </path>
+                                            </svg></span>
+                                        <p>Cucina</p>
+                                    </div>
+                                    <div class="d-flex">
+                                        <span class="pe-4"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
+                                                aria-hidden="true" role="presentation" focusable="false"
+                                                style="display: block; height: 24px; width: 24px; fill: currentcolor;">
+                                                <path
+                                                    d="M7.5 2a4.5 4.5 0 0 1 4.47 4H14v2H8V6h1.95A2.5 2.5 0 0 0 5 6.34V16h26v2h-2v5a5 5 0 0 1-3 4.58V30h-2v-2H8v2H6v-2.42a5 5 0 0 1-3-4.34V18H1v-2h2V6.5A4.5 4.5 0 0 1 7.5 2zM27 18H5v5a3 3 0 0 0 2.65 2.98l.17.01L8 26h16a3 3 0 0 0 3-2.82V23z">
+                                                </path>
+                                            </svg></span>
+                                        <p>Vasca da bagno</p>
+                                    </div>
+                                    <div class="d-flex">
+                                        <span class="pe-4"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
+                                                aria-hidden="true" role="presentation" focusable="false"
+                                                style="display: block; height: 24px; width: 24px; fill: currentcolor;">
+                                                <path
+                                                    d="M31 6v2h-1v23h-6V13H8v18H2V8H1V6zm-15.37 9 .96.7c3.32 2.42 5.14 5.06 5.38 7.93l.02.28v.21l.01.14c0 3.18-2.7 5.74-6 5.74a5.9 5.9 0 0 1-5.99-5.39v-.21l-.01-.15a9.3 9.3 0 0 1 1.64-4.99l.22-.34.68-.98 1.24.79zM28 8H4v21h2V13a2 2 0 0 1 1.7-1.98l.15-.01L8 11h16a2 2 0 0 1 2 1.85V29h2zM16 25.36l-.1.09c-.61.65-.9 1.23-.9 1.72 0 .42.41.83 1 .83s1-.4 1-.83c0-.45-.24-.97-.76-1.56l-.15-.16zm.35-7.32-1.77 3.56-1.46-.93-.15.27a7.28 7.28 0 0 0-.94 2.75l-.02.29-.01.26v.12c.03.92.4 1.76 1.03 2.4.14-1.14.86-2.24 2.1-3.33l.23-.2.64-.53.64.53c1.38 1.16 2.19 2.32 2.33 3.53A3.6 3.6 0 0 0 20 24.49l.01-.22V24c-.1-1.86-1.12-3.7-3.13-5.5l-.27-.24zM31 2v2H1V2z">
+                                                </path>
+                                            </svg></span>
+                                        <p>Caminetto interno</p>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="d-flex">
+                                        <span class="pe-4"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
+                                                aria-hidden="true" role="presentation" focusable="false"
+                                                style="display: block; height: 24px; width: 24px; fill: currentcolor;">
+                                                <path
+                                                    d="M16 20.33a3.67 3.67 0 1 1 0 7.34 3.67 3.67 0 0 1 0-7.34zm0 2a1.67 1.67 0 1 0 0 3.34 1.67 1.67 0 0 0 0-3.34zM16 15a9 9 0 0 1 8.04 4.96l-1.51 1.51a7 7 0 0 0-13.06 0l-1.51-1.51A9 9 0 0 1 16 15zm0-5.33c4.98 0 9.37 2.54 11.94 6.4l-1.45 1.44a12.33 12.33 0 0 0-20.98 0l-1.45-1.45A14.32 14.32 0 0 1 16 9.66zm0-5.34c6.45 0 12.18 3.1 15.76 7.9l-1.43 1.44a17.64 17.64 0 0 0-28.66 0L.24 12.24c3.58-4.8 9.3-7.9 15.76-7.9z">
+                                                </path>
+                                            </svg></span>
+                                        <p>Wifi</p>
+                                    </div>
+                                    <div class="d-flex">
+                                        <span class="pe-4"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
+                                                aria-hidden="true" role="presentation" focusable="false"
+                                                style="display: block; height: 24px; width: 24px; fill: currentcolor;">
+                                                <path
+                                                    d="M23 1a2 2 0 0 1 2 1.85V19h4v2h-2v8h2v2H3v-2h2v-8H3v-2h4V3a2 2 0 0 1 1.85-2H9zM9 21H7v8h2zm4 0h-2v8h2zm4 0h-2v8h2zm4 0h-2v8h2zm4 0h-2v8h2zm-10-8H9v6h6zm8 0h-6v6h6zM15 3H9v8h6zm8 0h-6v8h6z">
+                                                </path>
+                                            </svg></span>
+                                        <p>Patio o balcone</p>
+                                    </div>
+                                    <div class="d-flex">
+                                        <span class="pe-4"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
+                                                aria-hidden="true" role="presentation" focusable="false"
+                                                style="display: block; height: 24px; width: 24px; fill: currentcolor;">
+                                                <path
+                                                    d="m15.59 1.91 1.02.8C22.17 7.04 25 11.46 25 15.98a8.99 8.99 0 0 1-.5 3.02H31v2h-2v9a1 1 0 0 1-.88 1H4a1 1 0 0 1-1-.88V21H1v-2h6.42c-.28-.9-.42-1.91-.42-3.01 0-2.25 1.1-4.82 3.27-7.75l.27-.35.55-.73 1.78 1.12L15.6 1.9zM27 21H5v8h22v-8zM16.4 5.1l-2.6 6.1-2.21-1.37-.17.24C9.87 12.3 9.07 14.2 9 15.77l-.01.21c0 1.1.17 2.04.48 2.85l.07.17h3a6.1 6.1 0 0 1-.05-.83c0-1.52.86-3.19 2.52-5.07l.24-.27.74-.81.74.8c1.82 2 2.76 3.76 2.76 5.35 0 .3-.02.57-.05.83h3.06l-.14-.07a6.7 6.7 0 0 0 .63-2.95c0-3.42-2.03-6.93-6.17-10.51l-.43-.36zm-.4 9.94-.08.1c-.9 1.14-1.36 2.11-1.41 2.88l-.01.15c0 .35.03.63.09.83h2.82c.06-.2.09-.48.09-.83 0-.79-.46-1.8-1.42-3.04l-.08-.1z">
+                                                </path>
+                                            </svg></span>
+                                        <p>Braciere</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn px-4 py-2 rounded-3 fw-medium">Mostra tutti e 29 i servizi</button>
+                        </div>
+                        <hr>
+                        <div id="calendar" class="my-5">
+                            <div>
+                                <h4>Seleziona la data di check-in</h4>
+                                <span class="my-2">Aggiungi le date del tuo viaggio per conoscere il prezzo
+                                    esatto</span>
+                            </div>
+                            <div class="row my-4">
+                                <div class="col-4 d-flex justify-content-between align-items-center">
+                                    <button class="btn"><svg viewBox="0 0 18 18" role="presentation" aria-hidden="true"
+                                            focusable="false"
+                                            style="height: 12px; width: 12px; display: block; fill: currentcolor;">
+                                            <path
+                                                d="m13.7 16.29a1 1 0 1 1 -1.42 1.41l-8-8a1 1 0 0 1 0-1.41l8-8a1 1 0 1 1 1.42 1.41l-7.29 7.29z"
+                                                fill-rule="evenodd"></path>
+                                        </svg></button>
+                                    <h6>Luglio 2026</h6>
+                                </div>
+                                <div class="col-4"></div>
+                                <div class="col-4 d-flex justify-content-between align-items-center">
+                                    <h6>Agosto 2026</h6>
+                                    <button class="btn"><svg viewBox="0 0 18 18" role="presentation" aria-hidden="true"
+                                            focusable="false"
+                                            style="height: 12px; width: 12px; display: block; fill: currentcolor;">
+                                            <path
+                                                d="m4.29 1.71a1 1 0 1 1 1.42-1.41l8 8a1 1 0 0 1 0 1.41l-8 8a1 1 0 1 1 -1.42-1.41l7.29-7.29z"
+                                                fill-rule="evenodd"></path>
+                                        </svg></button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="week">L M M G V S D</p>
+                                </div>
+                                <div class="col">
+                                    <p class="week">L M M G V S D</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <aside id="check-dates" class="col-5 d-flex justify-content-end">
+                        <div id="sticky-element" class="p-5">
+                            <h4>Aggiungi le date per conoscere i prezzi</h4>
+                            <div class="row form-container-border border">
+                                <div class="form-btn-container col-6 border-end no-gutters dropdown">
+                                    <button id="dropdown-guests"
+                                        class="btn dropdown-toggle w-100 d-flex justify-content-between align-items-center"
+                                        type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <div class="text-start">
+                                            <strong class="d-flex">CHECK-IN</strong>
+                                            <p>Aggiungi una data</p>
+                                        </div>
+                                        <div class="dropdown-menu" aria-labelledby="dropdown-guests">
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </button>
+                                </div>
+                                <div class="form-btn-container col-6 no-gutters dropdown">
+                                    <button id="dropdown-guests"
+                                        class="btn dropdown-toggle w-100 d-flex justify-content-between align-items-center"
+                                        type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <div class="text-start">
+                                            <strong class="d-flex">CHECK-OUT</strong>
+                                            <p>Aggiungi una data</p>
+                                        </div>
+                                        <div class="dropdown-menu" aria-labelledby="dropdown-guests">
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="mb-3 row form-container-border border-bottom border-start border-end">
+                                <div class=" col form-btn-container no-gutters dropdown">
+                                    <button id="dropdown-guests"
+                                        class="btn dropdown-toggle w-100 d-flex justify-content-between align-items-center"
+                                        type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <div class="text-start">
+                                            <strong class="d-flex">OSPITI</strong>
+                                            <p>1 ospite</p>
+                                        </div>
+                                        <i class="bi bi-chevron-down"></i>
+                                        <div class="dropdown-menu" aria-labelledby="dropdown-guests">
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                            <button id="available-dates-btn" class="bg-danger btn dropdown-toggle w-100" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="text-center">
+                                    <span class="text-white fs-6">Controlla la disponibilità</span>
+                                </div>
+                            </button>
+                            <span class="d-flex align-items-center ms-5 mt-5">
+                                <svg class="me-2 text-secondary" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
+                                    aria-hidden="true" role="presentation" focusable="false"
+                                    style="display: block; height: 16px; width: 16px; fill: currentcolor;">
+                                    <path
+                                        d="m7.5011 1c.5272 0 .9591.40794.99725.92537l.00275.07463v1h5.5c.31265 0 .5435.281645.4935.581075l-.01275.056285-.96125 3.36264.96125 3.36265c.08055.2818-.0967.5625-.36775.62465l-.0554.00945-.0576.00325h-5.5c-.5272 0-.9591-.40795-.99725-.92535l-.00275-.07465v-1h-5v6h-1v-14zm1 3h-1v4h1z">
+                                    </path>
+                                </svg> <a href="#" class="text-secondary">Segnala questo annuncio</a>
+                            </span>
+                        </div>
+
+                    </aside>
+                    <hr>
+                </div>
+            </div>
+        </section>
+        <section id="users-reviews">
+            <div class="container">
+                <div class="row">
+                    <h4>Novità · 2 recensioni</h4>
+                    <p>Mostreremo la valutazione media dopo 3 recensioni</p>
+                </div>
+                <div class="row">
+                            <div class="col-6">
+                                <div id="host" class="d-flex align-items-center my-4">
+                                <div class="pe-4"><img class="host-propic" src="./assets/propic.png" alt=""></div>
+                                <div>
+                                    <p class="host-name">Austin</p>
+                                    <span>10 anni su Airbnb</span>
+                                </div>
+                            </div>
+                                <div class="d-flex align-items-center">
+                                    <div class="pe-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                            class="svg-star bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path
+                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                            class="svg-star bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path
+                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                            class="svg-star bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path
+                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                            class="svg-star bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path
+                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                            class="svg-star bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path
+                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                        </svg>
+                                    </div>
+                                    <span class="text-secondary fw-light">· 1 settimana fa</span>
+                                </div>
+                                <p class="truncate-overflow">Consigliamo al 100% di affittare questo bellissimo chalet. La vista
+                                    era splendida, il fuoco era accogliente e lo spazio era così pulito e ben studiato. Il
+                                    nostro unico rimpianto è di non essere potuti rimanere più a lungo!
+                                    Craig è stato molto disponibile e veloce a rispondere a qualsiasi domanda. Ottimo host!
+                                    La vasca all'aperto era un posto fantastico per godersi un bicchiere di vino alla fine
+                                    della giornata.</p>
+                                <a href="#">Mostra altro</a>
+                            </div>
+                            <div class="col-6">
+                                <div id="host" class="d-flex align-items-center my-4">
+                                <div class="pe-4"><img class="host-propic" src="./assets/propic.png" alt=""></div>
+                                <div>
+                                    <p class="host-name">Austin</p>
+                                    <span>10 anni su Airbnb</span>
+                                </div>
+                            </div>
+                                <div class="d-flex align-items-center">
+                                    <div class="pe-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                            class="svg-star bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path
+                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                            class="svg-star bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path
+                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                            class="svg-star bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path
+                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                            class="svg-star bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path
+                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                            class="svg-star bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path
+                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                        </svg>
+                                    </div>
+                                    <span class="text-secondary fw-light">· 1 settimana fa</span>
+                                </div>
+                                <p class="truncate-overflow">Consigliamo al 100% di affittare questo bellissimo chalet. La vista
+                                    era splendida, il fuoco era accogliente e lo spazio era così pulito e ben studiato. Il
+                                    nostro unico rimpianto è di non essere potuti rimanere più a lungo!
+                                    Craig è stato molto disponibile e veloce a rispondere a qualsiasi domanda. Ottimo host!
+                                    La vasca all'aperto era un posto fantastico per godersi un bicchiere di vino alla fine
+                                    della giornata.</p>
+                                <a href="#">Mostra altro</a>
+                            </div>
+                        <a href="#" class="text-secondary fw-light my-5">Come funzionano le recensioni</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <section id="map"></section>
+    </main>
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmxc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="./js/script.js"></script>
+</body>
+
+</html>
