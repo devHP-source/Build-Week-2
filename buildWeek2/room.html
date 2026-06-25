@@ -394,60 +394,54 @@
                             <h4>Aggiungi le date per conoscere i prezzi</h4>
                             <div class="row form-container-border border">
                                 <div class="form-btn-container col-6 border-end no-gutters dropdown">
-                                    <button id="dropdown-guests"
-                                        class="btn dropdown-toggle w-100 d-flex justify-content-between align-items-center"
+                                    <button id="dropdown-checkin-btn"
+                                        class="btn w-100 d-flex justify-content-between align-items-center"
                                         type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <div class="text-start">
+                                        <span class="text-start">
                                             <strong class="d-flex">CHECK-IN</strong>
                                             <p>Aggiungi una data</p>
-                                        </div>
-                                        <div class="dropdown-menu" aria-labelledby="dropdown-guests">
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
+                                        </span>
                                     </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdown-checkin-btn">
+                                        <li><a class="dropdown-item" href="#">Action</a></li>
+                                    </ul>
                                 </div>
                                 <div class="form-btn-container col-6 no-gutters dropdown">
-                                    <button id="dropdown-guests"
-                                        class="btn dropdown-toggle w-100 d-flex justify-content-between align-items-center"
+                                    <button id="dropdown-checkout-btn"
+                                        class="btn w-100 d-flex justify-content-between align-items-center"
                                         type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <div class="text-start">
+                                        <span class="text-start">
                                             <strong class="d-flex">CHECK-OUT</strong>
                                             <p>Aggiungi una data</p>
-                                        </div>
-                                        <div class="dropdown-menu" aria-labelledby="dropdown-guests">
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
+                                        </span>
+
                                     </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdown-checkout-btn">
+                                        <li><a class="dropdown-item" href="#">Action</a></li>
+                                    </ul>
                                 </div>
                             </div>
                             <div class="mb-3 row form-container-border border-bottom border-start border-end">
                                 <div class=" col form-btn-container no-gutters dropdown">
-                                    <button id="dropdown-guests"
-                                        class="btn dropdown-toggle w-100 d-flex justify-content-between align-items-center"
+                                    <button id="dropdown-guests-btn"
+                                        class="btn w-100 d-flex justify-content-between align-items-center"
                                         type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <div class="text-start">
+                                        <span class="text-start">
                                             <strong class="d-flex">OSPITI</strong>
                                             <p>1 ospite</p>
-                                        </div>
+                                        </span>
                                         <i class="bi bi-chevron-down"></i>
-                                        <div class="dropdown-menu" aria-labelledby="dropdown-guests">
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
                                     </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdown-guests-btn">
+                                        <li><a class="dropdown-item" href="#">Action</a></li>
+                                    </ul>
                                 </div>
                             </div>
-                            <button id="available-dates-btn" class="bg-danger btn dropdown-toggle w-100" type="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <div id="available-dates-btn" class="bg-danger btn w-100" role="button">
                                 <div class="text-center">
                                     <span class="text-white fs-6">Controlla la disponibilità</span>
                                 </div>
-                            </button>
+                            </div>
                             <span class="d-flex align-items-center ms-5 mt-5">
                                 <svg class="me-2 text-secondary" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
                                     aria-hidden="true" role="presentation" focusable="false"
@@ -465,118 +459,326 @@
             </div>
         </section>
         <section id="users-reviews">
-            <div class="container">
+            <div class="container my-4">
                 <div class="row">
                     <h4>Novità · 2 recensioni</h4>
                     <p>Mostreremo la valutazione media dopo 3 recensioni</p>
                 </div>
                 <div class="row">
-                            <div class="col-6">
-                                <div id="host" class="d-flex align-items-center my-4">
-                                <div class="pe-4"><img class="host-propic" src="./assets/propic.png" alt=""></div>
-                                <div>
-                                    <p class="host-name">Austin</p>
-                                    <span>10 anni su Airbnb</span>
+                    <div class="col-6">
+                        <div id="guest1" class="d-flex align-items-center my-4">
+                            <div class="pe-4"><img class="host-propic" src="./assets/propic.png" alt=""></div>
+                            <div>
+                                <p class="host-name">Austin</p>
+                                <span>10 anni su Airbnb</span>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <div class="pe-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="svg-star bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="svg-star bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="svg-star bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="svg-star bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="svg-star bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+                            </div>
+                            <span class="text-secondary fw-light">· 1 settimana fa</span>
+                        </div>
+                        <p class="truncate-overflow">Consigliamo al 100% di affittare questo bellissimo chalet. La vista
+                            era splendida, il fuoco era accogliente e lo spazio era così pulito e ben studiato. Il
+                            nostro unico rimpianto è di non essere potuti rimanere più a lungo!
+                            Craig è stato molto disponibile e veloce a rispondere a qualsiasi domanda. Ottimo host!
+                            La vasca all'aperto era un posto fantastico per godersi un bicchiere di vino alla fine
+                            della giornata.</p>
+                        <a href="#">Mostra altro</a>
+                    </div>
+                    <div class="col-6">
+                        <div id="guest2" class="d-flex align-items-center my-4">
+                            <div class="pe-4"><img class="host-propic" src="./assets/propic.png" alt=""></div>
+                            <div>
+                                <p class="host-name">Mark</p>
+                                <span>10 anni su Airbnb</span>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <div class="pe-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="svg-star bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="svg-star bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="svg-star bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="svg-star bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="svg-star bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+                            </div>
+                            <span class="text-secondary fw-light">· 3 giorni fa</span>
+                        </div>
+                        <p class="truncate-overflow">Devo dire che questo è un luogo davvero speciale.
+                            Viaggiamo molto e abbiamo soggiornato in molti posti in tutto il mondo, ma questo mi ha
+                            semplicemente conquistato il cuore.
+                            È il guscio senza pretese della baita arroccata lassù sulla collina e la splendida
+                            semplicità di tutto.
+                            Ha tutto il necessario e, se lo desideri, puoi goderti le piccole cose della vita.
+                            Abbiamo usato tutto: il camino, il braciere, il forno da campeggio, la vasca, la terrazza, i
+                            libri e altro ancora.
+                            Amo le piccole cose, la vita in piccolo e accetto le imperfezioni, e questo posto ha tutto
+                            questo.
+                            Abbiamo trascorso un soggiorno meraviglioso e torneremo sicuramente.
+                            Grazie!</p>
+                        <a href="#">Mostra altro</a>
+                    </div>
+                    <a href="#" class="text-secondary fw-light my-5">Come funzionano le recensioni</a>
+                    <hr>
+                </div>
+            </div>
+
+        </section>
+        <section id="map">
+            <div class="container">
+                <div class="row">
+                    <div>
+                        <h4>Dove sarai</h4>
+                        <span class="my-2">Crabtree, Tasmania, Australia</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="my-4"><iframe class="w-100 rounded-4"
+                            src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d93489.95004600156!2d147.0485!3d-42.9243!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sit!2sit!4v1782405995709!5m2!1sit!2sit"
+                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+                </div>
+                <div class="mb-5">
+                    <a href="#">Mostra altro</a>
+                    <button class="btn"><svg viewBox="0 0 18 18" role="presentation" aria-hidden="true"
+                            focusable="false" style="height: 12px; width: 12px; display: block; fill: currentcolor;">
+                            <path
+                                d="m4.29 1.71a1 1 0 1 1 1.42-1.41l8 8a1 1 0 0 1 0 1.41l-8 8a1 1 0 1 1 -1.42-1.41l7.29-7.29z"
+                                fill-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                </div>
+                <hr>
+            </div>
+        </section>
+        <section id="host-details">
+            <div class="container my-4">
+                <div class="row d-flex align-items-start mb-5">
+                    <h4 class="text-nowrap mt-3">Ti presentiamo l'host</h4>
+                    <div class="col-5 pe-5">
+                        <div class="card-host mx-1 row border rounded-5 d-flex align-items-center">
+                            <div class="col-8 d-flex flex-column align-items-center">
+                                <span>
+                                    <img class="host-propic" src="./assets/propic.png" alt="">
+                                </span>
+                                <div class="d-flex flex-column align-items-center">
+                                    <h3>Craig</h3>
+                                    <span class="icon-card-host d-flex"><svg xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 32 32" aria-hidden="true" role="presentation"
+                                            focusable="false">
+                                            <path d="M16 31a7 7 0 1 0 0-14 7 7 0 0 0 0 14z"></path>
+                                            <path
+                                                d="M25.67.33a2 2 0 0 1 2 1.85v6.54a2 2 0 0 1-.97 1.7l-.14.08-9.67 4.84a2 2 0 0 1-1.61.07l-.17-.07-9.67-4.84a2 2 0 0 1-1.1-1.62V2.33a2 2 0 0 1 1.84-2h.15z">
+                                            </path>
+                                        </svg>Superhost</span>
                                 </div>
                             </div>
-                                <div class="d-flex align-items-center">
-                                    <div class="pe-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                            class="svg-star bi bi-star-fill" viewBox="0 0 16 16">
-                                            <path
-                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                            class="svg-star bi bi-star-fill" viewBox="0 0 16 16">
-                                            <path
-                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                            class="svg-star bi bi-star-fill" viewBox="0 0 16 16">
-                                            <path
-                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                            class="svg-star bi bi-star-fill" viewBox="0 0 16 16">
-                                            <path
-                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                            class="svg-star bi bi-star-fill" viewBox="0 0 16 16">
-                                            <path
-                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                        </svg>
+                            <div class="col-4">
+                                <div class="d-flex flex-column">
+                                    <span>419</span>
+                                    <span>recensioni</span>
+                                </div>
+                                <hr>
+                                <div class="d-flex flex-column">
+                                    <div class="d-flex align-items-center">
+                                        <span>5,0</span>
+                                        <span class="d-flex align-items-center"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="16" height="16" fill="currentColor"
+                                                class="svg-star bi bi-star-fill" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                            </svg></span>
                                     </div>
-                                    <span class="text-secondary fw-light">· 1 settimana fa</span>
+                                    <span>valutazione</span>
                                 </div>
-                                <p class="truncate-overflow">Consigliamo al 100% di affittare questo bellissimo chalet. La vista
-                                    era splendida, il fuoco era accogliente e lo spazio era così pulito e ben studiato. Il
-                                    nostro unico rimpianto è di non essere potuti rimanere più a lungo!
-                                    Craig è stato molto disponibile e veloce a rispondere a qualsiasi domanda. Ottimo host!
-                                    La vasca all'aperto era un posto fantastico per godersi un bicchiere di vino alla fine
-                                    della giornata.</p>
-                                <a href="#">Mostra altro</a>
-                            </div>
-                            <div class="col-6">
-                                <div id="host" class="d-flex align-items-center my-4">
-                                <div class="pe-4"><img class="host-propic" src="./assets/propic.png" alt=""></div>
-                                <div>
-                                    <p class="host-name">Austin</p>
-                                    <span>10 anni su Airbnb</span>
+                                <hr>
+                                <div class="d-flex flex-column">
+                                    <span>6</span>
+                                    <span>anni da host</span>
                                 </div>
                             </div>
-                                <div class="d-flex align-items-center">
-                                    <div class="pe-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                            class="svg-star bi bi-star-fill" viewBox="0 0 16 16">
+                        </div>
+                        <div id="presentation-host">
+                            <div class="mt-4 pt-2">
+                                <div class="d-flex">
+                                    <span class="me-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
+                                            aria-hidden="true" role="presentation" focusable="false"
+                                            style="display: block; height: 24px; width: 24px; fill: currentcolor;">
                                             <path
-                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                            class="svg-star bi bi-star-fill" viewBox="0 0 16 16">
-                                            <path
-                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                            class="svg-star bi bi-star-fill" viewBox="0 0 16 16">
-                                            <path
-                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                            class="svg-star bi bi-star-fill" viewBox="0 0 16 16">
-                                            <path
-                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                            class="svg-star bi bi-star-fill" viewBox="0 0 16 16">
-                                            <path
-                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                        </svg>
-                                    </div>
-                                    <span class="text-secondary fw-light">· 1 settimana fa</span>
+                                                d="M20 2a2 2 0 0 1 2 1.85V6h6a3 3 0 0 1 3 2.82V27a3 3 0 0 1-2.82 3H4a3 3 0 0 1-3-2.82V9a3 3 0 0 1 2.82-3H10V4a2 2 0 0 1 1.85-2H12zm8 6H4a1 1 0 0 0-1 .88V12a3 3 0 0 0 2.82 3H13v2H6a4.98 4.98 0 0 1-3-1v11a1 1 0 0 0 .88 1H28a1 1 0 0 0 1-.88V16c-.78.59-1.74.95-2.78 1h-7.17v-2H26a3 3 0 0 0 3-2.82V9a1 1 0 0 0-.88-1zm-10 4a1 1 0 0 1 1 .88V19a1 1 0 0 1-.88 1H14a1 1 0 0 1-1-.88V13a1 1 0 0 1 .88-1H14zm-1 2h-2v4h2zm3-10h-8v2h8z">
+                                            </path>
+                                        </svg></span>
+                                    <p>Lavoro: Falegname/artigiano</p>
                                 </div>
-                                <p class="truncate-overflow">Consigliamo al 100% di affittare questo bellissimo chalet. La vista
-                                    era splendida, il fuoco era accogliente e lo spazio era così pulito e ben studiato. Il
-                                    nostro unico rimpianto è di non essere potuti rimanere più a lungo!
-                                    Craig è stato molto disponibile e veloce a rispondere a qualsiasi domanda. Ottimo host!
-                                    La vasca all'aperto era un posto fantastico per godersi un bicchiere di vino alla fine
-                                    della giornata.</p>
-                                <a href="#">Mostra altro</a>
+                                <div class="d-flex">
+                                    <span class="me-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
+                                            aria-hidden="true" role="presentation" focusable="false"
+                                            style="display: block; height: 24px; width: 24px; fill: currentcolor;">
+                                            <path
+                                                d="M26 2a5 5 0 0 1 5 4.78V21a5 5 0 0 1-4.78 5h-6.06L16 31.08 11.84 26H6a5 5 0 0 1-4.98-4.56L1 21.22 1 21V7a5 5 0 0 1 4.78-5H26zm0 2H6a3 3 0 0 0-3 2.82V21a3 3 0 0 0 2.82 3H12.8l3.2 3.92L19.2 24H26a3 3 0 0 0 3-2.82V7a3 3 0 0 0-2.82-3H26zM16 6a8.02 8.02 0 0 1 8 8.03A8 8 0 0 1 16.23 22h-.25A8 8 0 0 1 8 14.24v-.25A8 8 0 0 1 16 6zm1.68 9h-3.37c.11 1.45.43 2.76.79 3.68l.09.22.13.3c.23.45.45.74.62.8H16c.33 0 .85-.94 1.23-2.34l.11-.44c.16-.67.29-1.42.34-2.22zm4.24 0h-2.23c-.1 1.6-.42 3.12-.92 4.32a6 6 0 0 0 3.1-4.07l.05-.25zm-9.61 0h-2.23a6 6 0 0 0 3.14 4.32c-.5-1.2-.82-2.71-.91-4.32zm.92-6.32-.13.07A6 6 0 0 0 10.08 13h2.23c.1-1.61.42-3.12.91-4.32zM16 8h-.05c-.27.08-.64.7-.97 1.65l-.13.4a13.99 13.99 0 0 0-.54 2.95h3.37c-.19-2.66-1.1-4.85-1.63-5H16zm2.78.69.02.05c.48 1.19.8 2.68.9 4.26h2.21A6.02 6.02 0 0 0 19 8.8l-.22-.12z">
+                                            </path>
+                                        </svg></span>
+                                    <p>Lingue: inglese</p>
+                                </div>
                             </div>
-                        <a href="#" class="text-secondary fw-light my-5">Come funzionano le recensioni</a>
+                            <div class="mt-4">
+                                <p>Sono Craig. Sono nato a Hobart e ho vissuto in Tasmania per la maggior parte della
+                                    mia
+                                    vita. Mi piacciono molto i miei amici, la mia famiglia e molte delle cose che la
+                                    Tasmania/Lutruwita ha da offrire, soprattutto le attività più tranquille lontano
+                                    dalla
+                                    folla, come il campeggio, le passeggiate nel bush, l'arrampicata, il surf, il
+                                    ciclismo,
+                                    le visite turistiche e, occasionalmente, una torta e un caffè o una cena fuori. Il
+                                    mio
+                                    posto felice è armeggiare in casa creando cose, che si tratti di una piccola casa,
+                                    di
+                                    qualcosa di lucido e argentato o di un semplice lavoro di falegnameria.</p>
+                            </div>
                         </div>
                     </div>
-
+                    <div class="contact-host col-7">
+                        <div>
+                            <h5 class="mb-4">Craig è Superhost</h5>
+                            <span>I Superhost sono host con esperienza e valutazioni molto alte, che si impegnano al
+                                massimo
+                                per fornire soggiorni straordinari ai loro ospiti.</span>
+                        </div>
+                        <div class="d-flex flex-column">
+                            <h5 class="mt-4 mb-3">Dettagli dell'host</h5>
+                            <span>Tasso di risposta: 100%</span>
+                            <span>Risponde entro un'ora</span>
+                        </div>
+                        <button class="btn my-3">Invia un messaggio all'host</button>
+                        <hr>
+                        <div class="pt-2">
+                            <span class="d-flex align-items-center"><span class="pe-2"><svg viewBox="0 0 48 48"
+                                        xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation"
+                                        focusable="false"
+                                        style="display: block; height: 24px; width: 24px; fill: rgb(227, 28, 95); stroke: currentcolor;">
+                                        <g>
+                                            <g stroke="none">
+                                                <path
+                                                    d="m25 5 .5846837.00517475c4.2905015.07574932 8.8374917.98334075 13.644943 2.73687823l.7703733.28794702v27.3705076l-.0084766.1301365c-.0392237.2994207-.2122236.5656263-.4699074.7230756l-.1154775.0605995-11.4234694 5.0774159c.0623636-.7458456-.0433445-1.4943022-.3209346-2.2783707-.2495178-.7044496-.7667703-1.7805075-1.0418654-2.3950548-1.9094732-4.1561789-3.9589781-8.3688465-6.0912876-12.5211487l-.3317555-.6369277c-.4686141-.9115826-.8248653-1.6297768-1.3147672-2.2052384-.743401-.8737317-1.7668654-1.3549948-2.8821508-1.3549948-1.1154695 0-2.1391179.4816323-2.8828868 1.3557332-.6050254.7114646-1.0306408 1.6819288-1.6457867 2.8412431-.4956822.9653459-.9868615 1.9338929-1.47282629 2.9041739l.00159179-19.0721502.769087-.28647781c4.798406-1.75037189 9.3373349-2.65799308 13.6207364-2.73688762z"
+                                                    fill-opacity=".2"></path>
+                                                <path
+                                                    d="m25 1c5.5985197 0 11.5175072 1.27473768 17.7548231 3.81642897.7027419.28641855 1.1783863.94329535 1.2386823 1.69066764l.0064946.16143432v28.73197667c0 1.8999458-1.0758761 3.6285379-2.7638433 4.4721215l-.2054644.0969363-15.0427818 6.6856808c-.4614217.2050763-1.8621146.3276624-2.7955525.3430957l-.192358.0016581.0009065-1.0005013c.6483674-.0069073 1.2843321-.1330366 1.8784107-.3747752.8327784-.3388673 1.5457548-.8939986 2.0790671-1.5885618l13.2600311-5.8942194c1.023196-.4547538 1.7028179-1.4383245 1.7751735-2.5449525l.0064111-.1964822v-28.73197667l-.6916987-.27704554c-5.7517231-2.26330416-11.1871718-3.39148539-16.3083013-3.39148539-5.1211255 0-10.5565697 1.12817946-16.3082877 3.39148006l-.6917123.27707479-.00030284 24.49382405c-.68067737 1.4079172-1.34834149 2.8151846-2.00083161 4.2173468l.00113445-28.71117085c0-.81311953.4922453-1.5453083 1.24525131-1.85215622 6.23725069-2.54166294 12.15623339-3.81639863 17.75474869-3.81639863z">
+                                                </path>
+                                            </g>
+                                            <path
+                                                d="m15.999908 41.6930234.6867258-.8851772c1.5957359-2.0328613 2.5919668-3.8873951 2.9612752-5.511912.2804314-1.2318637.2318527-2.5167089-.4804505-3.5591688-.6801015-.9952012-1.8642067-1.5894421-3.1673665-1.5894421-1.3033438 0-2.487633.5940563-3.1675505 1.5890729-.7099111 1.039137-.761802 2.3201055-.4810025 3.5580612.3689403 1.6247015 1.3653552 3.4796045 2.9616432 5.5133888l.6867258.8851772.6447715.7192179c1.1495113 1.2599236 2.1735278 2.122579 3.2227536 2.7149739.8151649.4602182 1.6400823.7413704 2.4521191.8358878.8812245.1033783 1.7585848-.0123685 2.559765-.3383795 1.6422905-.6682672 2.8186673-2.1775911 3.0700251-3.9387151.1205267-.8438258.0264975-1.6854363-.2876078-2.572644-.2495178-.7044496-.7667703-1.7805075-1.0418654-2.3950548-1.9094732-4.1561789-3.9589781-8.3688465-6.0912876-12.5211487-.6486357-1.2222643-1.0477537-2.1388241-1.6465227-2.8421661-.743401-.8737317-1.7668654-1.3549948-2.8821508-1.3549948-1.1154695 0-2.1391179.4816323-2.8828868 1.3557332-.6050254.7114646-1.0306408 1.6819288-1.6457867 2.8412431-2.1326775 4.1534098-4.1819984 8.3660775-6.09128759 12.5211487-.28227155.6306079-.79308369 1.6933742-1.04168139 2.3948702-.3141053.8872077-.40813448 1.7288182-.28760784 2.5731978.25117384 1.7609394 1.42736664 3.2700787 3.06965711 3.9385305.81939715.3333951 1.69418134.4397272 2.55958102.3385641.81295679-.0948866 1.63805829-.3760388 2.45248709-.8360724 1.0492258-.5922103 2.0732422-1.4550503 3.2227536-2.7149739z"
+                                                fill="none" stroke-width="2"></path>
+                                        </g>
+                                    </svg></span>Per proteggere i tuoi pagamenti, utilizza sempre Airbnb per inviare
+                                denaro
+                                e comunicare con gli host.</span>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            </div>
+        </section>
+        <section id="to-know">
+            <div class="container">
+                <div class="row ">
+                    <h4 class="my-4">Da sapere</h4>
+                        <div class="row d-flex justify-content-between align-items-top">
+                            <div class="col-4">
+                                <span><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                                        role="presentation" focusable="false"
+                                        style="display: block; height: 24px; width: 24px; fill: currentcolor;">
+                                        <path
+                                            d="m12 0v2h8v-2h2v2h6c1.1045695 0 2 .8954305 2 2v21c0 2.7614237-2.2385763 5-5 5h-18c-2.76142375 0-5-2.2385763-5-5v-21c0-1.1045695.8954305-2 2-2h6v-2zm16 12h-24v13c0 1.6568542 1.34314575 3 3 3h18c1.6568542 0 3-1.3431458 3-3zm-8.2071068 2.2928932 1.4142136 1.4142136-3.7921068 3.7928932 3.7921068 3.7928932-1.4142136 1.4142136-3.7928932-3.7921068-3.7928932 3.7921068-1.4142136-1.4142136 3.7921068-3.7928932-3.7921068-3.7928932 1.4142136-1.4142136 3.7928932 3.7921068zm-9.7928932-10.2928932h-6v6h24v-6h-6v2h-2v-2h-8v2h-2z">
+                                        </path>
+                                    </svg></span>
+                                <h6>Termini e cancellazione</h6>
+                                <p>Cancellazione gratuita entro il giorno 24 luglio. Effettua la cancellazione prima del giorno
+                                    del check-in (25 luglio) per ottenere un rimborso parziale.
+                                    <span class="d-block">Consulta i termini completi dell'host per maggiori dettagli.</span></p>
+                                <a href="#">Scopri di più</a>
+                            </div>
+                            <div class="col-4 ">
+                                <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true"
+                                        role="presentation" focusable="false"
+                                        style="display: block; height: 24px; width: 24px; fill: currentcolor;">
+                                        <path
+                                            d="M16.84 27.16v-3.4l-.26.09c-.98.32-2.03.51-3.11.55h-.7A11.34 11.34 0 0 1 1.72 13.36v-.59A11.34 11.34 0 0 1 12.77 1.72h.59c6.03.16 10.89 5.02 11.04 11.05V13.45a11.3 11.3 0 0 1-.9 4.04l-.13.3 7.91 7.9v5.6H25.7l-4.13-4.13zM10.31 7.22a3.1 3.1 0 1 1 0 6.19 3.1 3.1 0 0 1 0-6.2zm0 2.06a1.03 1.03 0 1 0 0 2.06 1.03 1.03 0 0 0 0-2.06zM22.43 25.1l4.12 4.13h2.67v-2.67l-8.37-8.37.37-.68.16-.3c.56-1.15.9-2.42.96-3.77v-.64a9.28 9.28 0 0 0-9-9h-.55a9.28 9.28 0 0 0-9 9v.54a9.28 9.28 0 0 0 13.3 8.1l.3-.16 1.52-.8v4.62z">
+                                        </path>
+                                    </svg></span>
+                                <h6>Regole della casa</h6>
+                                <div class="d-flex flex-column">
+                                    <p>Check-in dopo le ore 15:00</p>
+                                    <p>Check-out entro le ore 11:00</p>
+                                    <p>Massimo 2 ospiti</p>
+                                </div>
+                                <a href="#">Scopri di più</a>
+                            </div>
+                            <div class="col-4">
+                                <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true"
+                                        role="presentation" focusable="false"
+                                        style="display: block; height: 24px; width: 24px; fill: currentcolor;">
+                                        <path
+                                            d="m16 .8.56.37C20.4 3.73 24.2 5 28 5h1v12.5C29 25.57 23.21 31 16 31S3 25.57 3 17.5V5h1c3.8 0 7.6-1.27 11.45-3.83L16 .8zm-1 3a22.2 22.2 0 0 1-9.65 3.15L5 6.97V17.5c0 6.56 4.35 11 10 11.46zm2 0v25.16c5.65-.47 10-4.9 10-11.46V6.97l-.35-.02A22.2 22.2 0 0 1 17 3.8z">
+                                        </path>
+                                    </svg></span>
+                                <h6>Alloggio e sicurezza</h6>
+                                <div class="d-flex flex-column">
+                                    <p>Rilevatore di monossido di carbonio</p>
+                                    <p> Rilevatore di fumo</p>
+                                </div>
+                                <a href="#">Scopri di più</a>
+                            </div>
+    
+                        </div>
                 </div>
             </div>
         </section>
-        <section id="map"></section>
     </main>
-
-
-
-
-
 
 
 
