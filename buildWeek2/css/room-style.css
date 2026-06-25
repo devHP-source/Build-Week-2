@@ -4,7 +4,7 @@ main {
     font-weight: 300;
 }
 
-.container{
+.container {
     padding: 0em 6em 0em 6em;
 }
 
@@ -214,7 +214,73 @@ hr {
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
-#users-reviews a {
+#users-reviews a, #map a {
     color: rgb(68, 68, 68) ;
     font-weight: 500;
+    font-size: 12pt;
+}
+#map button{
+    border: none;
+    outline: none;
+}
+.card-host img{
+    width: 100px;
+    
+}
+.icon-card-host svg{
+    width: 12px;
+    height: auto;
+    fill: rgb(68, 68, 68);
+}
+.icon-card-host{
+    font-size: 9pt;
+}
+.card-host{
+    margin-top: 1em;
+    padding: 1em;
+    box-shadow: 0px 5px 10px rgba(197, 197, 197, 0.579);
+}
+
+.card-host div:nth-child(2){
+    margin: 1em 0em 1em 0em;
+    line-height: 1.3em;
+}
+.card-host div:nth-child(2) span:first-child{
+    font-weight: 600;
+    font-size: 16pt;
+}
+.card-host div:nth-child(2) svg{
+    width: 13px;
+}
+.card-host div:nth-child(2) span:nth-child(2){
+    font-size: 8pt;
+    font-weight: 500;
+}
+#host-details button {
+    padding: .5em 1em ;
+    background-color: rgb(246, 246, 246);
+    border-radius: 13px;
+}
+.contact-host{
+    padding: 1em 2em 0em 2em;
+}
+
+.contact-host div:nth-of-type(3) span {
+    font-size: 9pt;
+}
+.contact-host h5 {
+    font-size: 14pt;
+}
+
+#to-know svg {
+    margin-bottom: 1em;
+}
+#to-know p,a{
+    color: rgb(130, 130, 130);
+    font-size: 10pt;
+    margin: 0;
+    width: 280px;
+}
+#to-know h6{
+    font-size: 11pt;
 }
