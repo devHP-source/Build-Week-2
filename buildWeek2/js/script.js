@@ -1,89 +1,94 @@
-const destinations = [ /* DATI per le DESTINATIONZI (possiamo modificarli anche dopo) */
+const destinations = [
+  /* DATI per le DESTINATIONZI (possiamo modificarli anche dopo) */
   {
     title: "Nelle vicinanze",
-    subtitle: "Scopri le opzioni intorno a te"
+    subtitle: "Scopri le opzioni intorno a te",
   },
-  { 
-    title: "Parigi, Francia", 
-    subtitle: "Perché hai aggiunto alloggi nei preferiti per questa località: Parigi" 
+  {
+    title: "Parigi, Francia",
+    subtitle:
+      "Perché hai aggiunto alloggi nei preferiti per questa località: Parigi",
   },
-  { 
-    title: "Barcellona, Spagna", 
-    subtitle: "Famosa meta balneare" 
+  {
+    title: "Barcellona, Spagna",
+    subtitle: "Famosa meta balneare",
   },
-  { 
-    title: "Firenze, Toscana", 
-    subtitle: "Ideale per un weekend fuori porta" 
+  {
+    title: "Firenze, Toscana",
+    subtitle: "Ideale per un weekend fuori porta",
   },
-  { 
-    title: "Napoli, Campania", 
-    subtitle: 'Per attrazioni come "Parco archeologico di Pompei"' 
+  {
+    title: "Napoli, Campania",
+    subtitle: 'Per attrazioni come "Parco archeologico di Pompei"',
   },
-  { 
-    title: "Città di Londra, Regno Unito", 
-    subtitle: "Per la sua animata vita notturna" 
+  {
+    title: "Città di Londra, Regno Unito",
+    subtitle: "Per la sua animata vita notturna",
   },
-  { 
-    title: "Torino, Piemonte", 
-    subtitle: "Per la splendida architettura" 
+  {
+    title: "Torino, Piemonte",
+    subtitle: "Per la splendida architettura",
   },
-  { 
-    title: "Budapest, Ungheria", 
-    subtitle: "Per la sua eccezionale cucina" 
+  {
+    title: "Budapest, Ungheria",
+    subtitle: "Per la sua eccezionale cucina",
   },
-  { 
-    title: "Praga, Cechia", 
-    subtitle: 'Per attrazioni come "Castello di Praga"' 
+  {
+    title: "Praga, Cechia",
+    subtitle: 'Per attrazioni come "Castello di Praga"',
   },
-  { 
-    title: "Valencia, Spagna", 
-    subtitle: "Per la splendida architettura" 
+  {
+    title: "Valencia, Spagna",
+    subtitle: "Per la splendida architettura",
   },
-  { 
-    title: "Vienna, Austria", 
-    subtitle: "Per la sua eccezionale cucina" 
-  },
-];
-
-const monthsData = [ /* DATI per i MESI */
-  { 
-    name: "Giugno", 
-    days: 30 
-  },
-  { 
-    name: "Luglio", 
-    days: 31 
+  {
+    title: "Vienna, Austria",
+    subtitle: "Per la sua eccezionale cucina",
   },
 ];
 
-const guestTypes = [ /* DATI per i TIPI di guest */
-  { 
-    key: "adulti", 
-    label: "Adulti", 
-    sub: "Da 13 anni in su" 
-
+const monthsData = [
+  /* DATI per i MESI */
+  {
+    name: "Giugno",
+    days: 30,
   },
-  { 
-    key: "bambini", 
-    label: "Bambini", 
-    sub: "Da 2 a 12 anni" 
-
+  {
+    name: "Luglio",
+    days: 31,
   },
 ];
 
-const guestState = {  // lo stato inizio
-  adulti: 0, 
-  bambini: 0 
+const guestTypes = [
+  /* DATI per i TIPI di guest */
+  {
+    key: "adulti",
+    label: "Adulti",
+    sub: "Da 13 anni in su",
+  },
+  {
+    key: "bambini",
+    label: "Bambini",
+    sub: "Da 2 a 12 anni",
+  },
+];
 
+const guestState = {
+  // lo stato inizio
+  adulti: 0,
+  bambini: 0,
 };
 
-
 /* ho migliorate il codice di Antonio per far facilitare il render di HTML */
-function weekdaysHTML() { // SETTIMANE
-  return ["L", "M", "M", "G", "V", "S", "D"].map((d) => `<span>${d}</span>`).join("");
+function weekdaysHTML() {
+  // SETTIMANE
+  return ["L", "M", "M", "G", "V", "S", "D"]
+    .map((d) => `<span>${d}</span>`)
+    .join("");
 }
 
-function monthHTML(month) { // MESI
+function monthHTML(month) {
+  // MESI
   let days = "";
   for (let i = 1; i <= month.days; i++) {
     days += `<button class="day-btn" type="button" data-day="${i}" data-month="${month.name}">${i}</button>`;
@@ -96,11 +101,13 @@ function monthHTML(month) { // MESI
     </div>`;
 }
 
-function calendarHTML() { // CALENDARIO
+function calendarHTML() {
+  // CALENDARIO
   return `<div class="months-container">${monthsData.map(monthHTML).join("")}</div>`;
 }
 
-function guestRowsHTML() { // GUEST
+function guestRowsHTML() {
+  // GUEST
   return guestTypes
     .map(
       (g) => `
@@ -114,12 +121,13 @@ function guestRowsHTML() { // GUEST
         <span class="counter-value">${guestState[g.key]}</span>
         <button class="counter-plus" type="button" aria-label="Aumenta ${g.label}">+</button>
       </div>
-    </div>`
+    </div>`,
     )
     .join("");
 }
 
-function destinationListHTML() { // DESTINAZIONI
+function destinationListHTML() {
+  // DESTINAZIONI
   return destinations
     .map(
       (d, i) => `
@@ -129,7 +137,7 @@ function destinationListHTML() { // DESTINAZIONI
         <h6>${d.title}</h6>
         <p>${d.subtitle}</p>
       </div>
-    </li>`
+    </li>`,
     )
     .join("");
 }
@@ -156,7 +164,6 @@ function wireGuestCounters(scope, onChange) {
   });
 }
 
-
 const dropdown = document.getElementById("dropdown-container");
 const searchBar = document.querySelector(".search-bar");
 
@@ -168,7 +175,7 @@ const desktopPanels = {
         .slice(0, 5)
         .map(
           (d, i) =>
-            `<button class="destination-btn fade-item" type="button" style="animation-delay:${(i + 1) * 0.12}s">${d.title}</button>`
+            `<button class="destination-btn fade-item" type="button" style="animation-delay:${(i + 1) * 0.12}s">${d.title}</button>`,
         )
         .join("")}
     </div>`,
@@ -187,7 +194,8 @@ function showDesktopPanel(id) {
   dropdown.innerHTML = desktopPanels[id]();
   dropdown.classList.add("open");
 
-  if (id === "where-btn") { // Destinazioni per desktop scrivono "Dove" e chiudono il pannello
+  if (id === "where-btn") {
+    // Destinazioni per desktop scrivono "Dove" e chiudono il pannello
     const summary = document.querySelector("#where-btn p");
     dropdown.querySelectorAll(".destination-btn").forEach((b) => {
       b.addEventListener("click", () => {
@@ -197,12 +205,15 @@ function showDesktopPanel(id) {
     });
   }
 
-  if (id === "guest-btn") { // Contatori ospiti per desktop e aggiornano il riepilogo "Chi" nella barra
+  if (id === "guest-btn") {
+    // Contatori ospiti per desktop e aggiornano il riepilogo "Chi" nella barra
     const summary = document.querySelector("#guest-btn p");
     const refreshChi = () => {
       const total = guestState.adulti + guestState.bambini;
       summary.textContent =
-        total > 0 ? `${total} ospite${total > 1 ? "i" : ""}` : "Aggiungi ospiti";
+        total > 0
+          ? `${total} ospite${total > 1 ? "i" : ""}`
+          : "Aggiungi ospiti";
     };
     refreshChi(); // allinea il riepilogo allo stato condiviso all'apertura
     wireGuestCounters(dropdown, refreshChi);
@@ -224,14 +235,14 @@ if (dropdown && searchBar) {
     });
   });
 
-  document.addEventListener("click", (e) => { // Se clicchiamo fuori dal modale, si chiude
+  document.addEventListener("click", (e) => {
+    // Se clicchiamo fuori dal modale, si chiude
     if (!openDesktopPanel) return;
     if (!dropdown.contains(e.target) && !searchBar.contains(e.target)) {
       closeDesktopPanel();
     }
   });
 }
-
 
 /* SEARCH MODALE per mobile */
 const searchModalEl = document.getElementById("searchModal");
@@ -251,8 +262,8 @@ if (searchModalEl) {
   calendarEl.innerHTML = calendarHTML();
   guestsEl.innerHTML = guestRowsHTML();
 
-  
-  function openAccPanel(panel) { // Accordion: un solo pannello aperto alla volta
+  function openAccPanel(panel) {
+    // Accordion: un solo pannello aperto alla volta
     panels.forEach((p) => p.classList.remove("acc-open"));
     panel.classList.add("acc-open");
   }
@@ -266,12 +277,14 @@ if (searchModalEl) {
   searchModalEl.addEventListener("show.bs.modal", () => {
     openAccPanel(dovePanel);
     guestsEl.querySelectorAll(".guest-row").forEach((row) => {
-      row.querySelector(".counter-value").textContent = guestState[row.dataset.guest];
+      row.querySelector(".counter-value").textContent =
+        guestState[row.dataset.guest];
     });
     updateChiValue();
   });
 
-  destListEl.querySelectorAll(".dest-item").forEach((item) => { // Una volta riempiti i dati, passa al prossimo modale: DOVE, QUANDO, CHI
+  destListEl.querySelectorAll(".dest-item").forEach((item) => {
+    // Una volta riempiti i dati, passa al prossimo modale: DOVE, QUANDO, CHI
     item.addEventListener("click", () => {
       const d = destinations[item.dataset.dest];
       doveValue.textContent = d.title;
@@ -280,13 +293,16 @@ if (searchModalEl) {
     });
   });
 
-  function updateChiValue() { //  Contatori ospiti e aggiorna riepilogo "Chi"
+  function updateChiValue() {
+    //  Contatori ospiti e aggiorna riepilogo "Chi"
     const total = guestState.adulti + guestState.bambini;
-    chiValue.textContent = total > 0 ? `${total} ospite${total > 1 ? "i" : ""}` : "Aggiungi ospiti";
+    chiValue.textContent =
+      total > 0 ? `${total} ospite${total > 1 ? "i" : ""}` : "Aggiungi ospiti";
   }
   wireGuestCounters(guestsEl, updateChiValue);
 
-  searchModalEl.querySelector("#modal-clear").addEventListener("click", () => { // Cancella tutto (reset button)
+  searchModalEl.querySelector("#modal-clear").addEventListener("click", () => {
+    // Cancella tutto (reset button)
     guestState.adulti = 0;
     guestState.bambini = 0;
     guestsEl.innerHTML = guestRowsHTML();
@@ -305,7 +321,9 @@ if (searchModalEl) {
       date: quandoValue.textContent,
       ospiti: { ...guestState },
     });
-    const instance = bootstrap.Modal.getInstance(searchModalEl) || new bootstrap.Modal(searchModalEl);
+    const instance =
+      bootstrap.Modal.getInstance(searchModalEl) ||
+      new bootstrap.Modal(searchModalEl);
     instance.hide();
   });
 
@@ -320,32 +338,113 @@ if (searchModalEl) {
   });
 }
 
-
 /* HAMBURGER MENU */
 const languageBtn = document.getElementById("language-btn");
-const menuBtn = document.getElementById("menu-btn");
+const languageDropdown = document.getElementById("language-dropdown");
+
 languageBtn.addEventListener("click", () => {
-  dropdown.classList.toggle("open");
+  languageDropdown.classList.toggle("open");
 
-  dropdown.innerHTML = `
-    <div class="language-menu">
+  if (languageDropdown.classList.contains("open")) {
+    languageDropdown.innerHTML = `
+  <div class="language-menu">
 
-      <h3>Lingua e regione</h3>
+    <h3>Lingua e paese</h3>
+
+    <div class="language-section">
+      <h4>Paesi</h4>
+
+      <button>Italia</button>
+      <button>Spagna</button>
+      <button>Francia</button>
+      <button>Regno Unito</button>
+    </div>
+
+    <div class="language-section">
+      <h4>Lingue</h4>
 
       <button>Italiano</button>
-
       <button>English</button>
-
       <button>Español</button>
-
       <button>Français</button>
-
     </div>
-  `;
+
+  </div>
+`;
+  } else {
+    languageDropdown.innerHTML = "";
+  }
+});
+
+document.addEventListener("click", (event) => {
+  if (
+    !languageBtn.contains(event.target) &&
+    !languageDropdown.contains(event.target)
+  ) {
+    languageDropdown.classList.remove("open");
+    languageDropdown.innerHTML = "";
+  }
+});
+const menuBtn = document.getElementById("menu-btn");
+const menuDropdown = document.getElementById("menu-dropdown");
+
+menuBtn.addEventListener("click", () => {
+  menuDropdown.classList.toggle("open");
+
+  if (menuDropdown.classList.contains("open")) {
+    menuDropdown.innerHTML = `
+     <div class="hamburger-menu">
+
+  <button class="menu-item">
+    <ion-icon name="help-circle-outline"></ion-icon>
+    Centro assistenza
+  </button>
+
+  <hr>
+
+<div class="host-card">
+
+  <div class="host-card-text">
+    <h4>Inizia a ospitare</h4>
+
+    <p>
+      Iniziare a ospitare e guadagnare un extra è facile.
+    </p>
+  </div>
+
+  <ion-icon name="home-outline"></ion-icon>
+
+</div>
+
+  <hr>
+
+  <button class="menu-item">Invita un host</button>
+
+  <button class="menu-item">Trova un co-host</button>
+
+  <button class="menu-item">Gift card</button>
+
+  <hr>
+
+  <button class="menu-item">Accedi o registrati</button>
+
+</div>
+    `;
+  } else {
+    menuDropdown.innerHTML = "";
+  }
+});
+
+document.addEventListener("click", (event) => {
+  if (!menuBtn.contains(event.target) && !menuDropdown.contains(event.target)) {
+    menuDropdown.classList.remove("open");
+    menuDropdown.innerHTML = "";
+  }
 });
 
 /* CAROUSEL SCROLL */
-document.querySelectorAll(".places-section").forEach((section) => { // Ogni sezione ha i suoi button (indipendenti)
+document.querySelectorAll(".places-section").forEach((section) => {
+  // Ogni sezione ha i suoi button (indipendenti)
   const track = section.querySelector(".airbnb-track");
   const btnPrev = section.querySelector(".btn-prev");
   const btnNext = section.querySelector(".btn-next");
