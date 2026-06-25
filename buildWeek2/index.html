@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="./assets/airbnbLogo_FAVICON.png" type="image/png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="./css/style.css">
     <title>Airbnb Clone | BW2</title>
@@ -73,15 +73,53 @@
           <button class="search-btn" aria-label="Cerca">
             <i class="bi bi-search"></i>
           </button>
-           
+
         </section>
        <div id="dropdown-container" class="dropdown-container"></div>
+
+        <!-- HEADER SEARCH, responsive per: TABLET e MOBILE (@media 840px) -->
+        <div class="mobile-search-header">
+            <button class="mobile-search-pill" type="button" data-bs-toggle="modal" data-bs-target="#searchModal" aria-label="Inizia la ricerca">
+                <i class="bi bi-search"></i>
+                <span>Inizia la ricerca</span>
+            </button>
+
+            <div class="mobile-categories">
+                <button class="mobile-cat active" type="button">
+                    <span class="cat-img-wrap">
+                        <img src="./assets/icons/earth.png" alt="Tutto" />
+                    </span>
+                    <span class="cat-label">Tutto</span>
+                </button>
+
+                <button class="mobile-cat" type="button">
+                    <span class="cat-img-wrap">
+                        <img src="./assets/icons/house.png" alt="Alloggi" />
+                    </span>
+                    <span class="cat-label">Alloggi</span>
+                </button>
+
+                <button class="mobile-cat" type="button">
+                    <span class="cat-img-wrap">
+                        <img src="./assets/icons/hot-air-balloon.png" alt="Esperienze" />
+                    </span>
+                    <span class="cat-label">Esperienze</span>
+                </button>
+
+                <button class="mobile-cat" type="button">
+                    <span class="cat-img-wrap">
+                        <img src="./assets/icons/bell.png" alt="Servizi" />
+                    </span>
+                    <span class="cat-label">Servizi</span>
+                </button>
+            </div>
+        </div>
     </header>
 
     <!-- MAIN -->
     <main>
 
-        <section class="places-section mb-5"> <!-- SECTION 1 -->
+        <section class="places-section mb-5 mt-5"> <!-- SECTION 1 -->
             <div class="carousel-top-bar d-flex justify-content-between align-items-center mb-3">
 
                 <h2 class="places-title fs-4 fw-bold mb-0">
@@ -1868,9 +1906,102 @@
     </footer>
 
 
+<!-- MODALE -->
+    <!-- SEARCH MODALE: schermo interno per: TABLET e MOBILE -->
+    <div class="modal fade search-modal" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content search-modal-content">
+
+                <!-- HEADER/NAV: categorie di nav-->
+                <div class="search-modal-header">
+                    <div class="modal-categories">
+                        <button class="modal-cat active" type="button">
+                            <img src="./assets/icons/earth.png" alt="" />
+                            <span>Tutto</span>
+                        </button>
+                        <button class="modal-cat" type="button">
+                            <img src="./assets/icons/house.png" alt="" />
+                            <span>Alloggi</span>
+                        </button>
+                        <button class="modal-cat" type="button">
+                            <img src="./assets/icons/hot-air-balloon.png" alt="" />
+                            <span>Esperienze</span>
+                        </button>
+                        <button class="modal-cat" type="button">
+                            <img src="./assets/icons/bell.png" alt="" />
+                            <span>Servizi</span>
+                        </button>
+                    </div>
+                    <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Chiudi">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
+
+                
+                <div class="search-modal-body">
+                    <div class="search-accordion">
+
+                        <!-- Inizia la ricerca: il modale DOVE, è messa come default -->
+                        <div class="acc-panel acc-open" data-panel="dove">
+                            <button class="acc-summary" type="button">
+                                <span class="acc-summary-label">Dove</span>
+                                <span class="acc-summary-value" id="dove-value">Cerca destinazioni</span>
+                            </button>
+                            <div class="acc-content">
+                                <h2 class="acc-title" id="searchModalLabel">Dove?</h2>
+                                <div class="dove-search-input">
+                                    <i class="bi bi-search"></i>
+                                    <input type="text" id="modal-destination-input" placeholder="Cerca destinazioni" aria-label="Cerca destinazioni" />
+                                </div>
+                                <p class="dest-list-label">Destinazioni suggerite</p>
+                                <ul class="dest-list" id="modal-dest-list">
+                                    <!-- JS -->
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- modale: QUANDO -->
+                        <div class="acc-panel" data-panel="quando">
+                            <button class="acc-summary" type="button">
+                                <span class="acc-summary-label">Quando</span>
+                                <span class="acc-summary-value" id="quando-value">Aggiungi date</span>
+                            </button>
+                            <div class="acc-content">
+                                <h2 class="acc-title">Quando vuoi partire?</h2>
+                                <div class="modal-calendar" id="modal-calendar"><!-- JS --></div>
+                            </div>
+                        </div>
+
+                        <!-- modale: CHI -->
+                        <div class="acc-panel" data-panel="chi">
+                            <button class="acc-summary" type="button">
+                                <span class="acc-summary-label">Chi</span>
+                                <span class="acc-summary-value" id="chi-value">Aggiungi ospiti</span>
+                            </button>
+                            <div class="acc-content">
+                                <h2 class="acc-title">Chi viene?</h2>
+                                <div class="modal-guests" id="modal-guests"><!-- JS --></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- FOOTER modale: cancella e ricerca -->
+                <div class="search-modal-footer">
+                    <button type="button" class="btn-clear-all" id="modal-clear">Cancella tutto</button>
+                    <button type="button" class="btn-search-submit" id="modal-search">
+                        <i class="bi bi-search"></i> Ricerca
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmxc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
     <script src="./js/script.js"></script>
 </body>
 

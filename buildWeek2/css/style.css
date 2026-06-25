@@ -209,6 +209,7 @@ nav {
 /* SEARCH BAR */
 .search-bar {
   width: 850px;
+  max-width: calc(100% - 2 * var(--page-gutter)); /* segue il --page-gutter (60px)*/
   height: 70px;
 
   margin: 30px auto;
@@ -241,6 +242,10 @@ nav {
 }
 .search-item:not(:last-child) {
   border-right: 1px solid #dddddd;
+}
+
+.search-item:last-of-type { /* ho tolto il bordo sinistro nella barra di ricerca */
+  border-right: none;
 }
 
 .search-item h6 {
@@ -306,7 +311,7 @@ nav {
 }
 
   
-
+/* ANIMATION */
 .fade-item {
   opacity: 0;
   animation: fadeUp 0.5s forwards;
@@ -323,7 +328,7 @@ nav {
     transform: translateY(0);
   }
 }
-
+/* ANIMATION DELAYS */
 .fade-item:nth-child(1) {
   animation-delay: 0s;
 }
@@ -337,6 +342,7 @@ nav {
   animation-delay: 0.9s;
 }
 
+/* CALENDAR STYLE */
 .calendar-menu {
   width: 800px;
 
@@ -348,15 +354,16 @@ nav {
 
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
+/* MONTHS STYLES */
 .months-container {
   display: flex;
   justify-content: space-between;
   gap: 40px;
 }
-
 .month {
   flex: 1;
 }
+/* WEEKS STYLES */
 .weekdays {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -369,6 +376,7 @@ nav {
 
   font-weight: 600;
 }
+/* DAYS STYLES */
 .days-grid {
   display: grid;
 
@@ -601,7 +609,6 @@ nav {
   flex-shrink: 0;
 }
 
-
 .airbnb-footer .container {
   max-width: 100%; 
   padding-inline: var(--page-gutter);
@@ -669,4 +676,384 @@ nav {
       .settings-social-wrap {
         width: auto;
     }
+}
+
+/* HEADER e NAV responsive per: TABLET e MOBILE */
+.mobile-search-header { /* HTML riga: 1910 */
+  display: none;
+  padding: 16px var(--page-gutter) 0;
+  background-color: var(--nav-bg-color);
+  border-bottom: 1px solid #ebebeb;
+}
+
+.mobile-search-pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  width: 100%;
+  padding: 14px 20px;
+
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  font-weight: 600;
+  font-size: 15px;
+  color: #222222;
+
+  cursor: pointer;
+}
+.mobile-search-pill i {
+  font-size: 16px;
+}
+
+.mobile-categories {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin-top: 14px;
+}
+
+.mobile-cat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  color: #6b6b6b;
+  font-weight: 600;
+  font-size: 13px;
+
+  padding-bottom: 10px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s ease;
+}
+.mobile-cat.active {
+  color: #222222;
+  border-bottom-color: #222222;
+}
+
+.cat-img-wrap {
+  position: relative;
+  display: inline-block;
+}
+.mobile-cat img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+}
+
+/* Search Modal (Bootstrap class: .modal-content)  */
+.search-modal .modal-content {
+  background-color: #f7f7f7;
+  border: none;
+
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.search-modal-header {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 16px;
+  flex-shrink: 0;
+}
+.modal-categories {
+  display: flex;
+  gap: 16px; /* gli spazi nel modale per .mobile-cat */
+}
+.modal-cat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  color: #717171;
+  font-size: 13px;
+  font-weight: 600;
+
+  padding-bottom: 6px;
+  border-bottom: 2px solid transparent;
+}
+.modal-cat img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+.modal-cat.active {
+  color: #222222;
+  border-bottom-color: #222222;
+}
+.modal-close-btn {
+  position: absolute;
+  right: 16px;
+  top: 12px;
+
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #dddddd;
+  border-radius: 50%;
+  background: #ffffff;
+
+  cursor: pointer;
+}
+
+.search-modal-body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 0 16px 16px;
+}
+
+.acc-panel {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  margin-bottom: 16px;
+}
+.acc-summary {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 18px 24px;
+
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  font-size: 15px;
+}
+.acc-summary-label {
+  color: #222222;
+  font-weight: 600;
+}
+.acc-summary-value {
+  color: #717171;
+}
+.acc-content {
+  display: none;
+  padding: 4px 24px 24px;
+}
+/* Pannello aperto: nasconde il sommario, mostra il contenuto */
+.acc-panel.acc-open .acc-summary {
+  display: none;
+}
+.acc-panel.acc-open .acc-content {
+  display: block;
+  animation: accExpand 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+/* Il sommario ricompare in dissolvenza quando un pannello si chiude */
+.acc-panel:not(.acc-open) .acc-summary {
+  animation: accSummaryIn 0.3s ease;
+}
+@keyframes accExpand {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes accSummaryIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.acc-title {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 12px 0 18px;
+}
+
+.dove-search-input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  border: 1px solid #dddddd;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+.dove-search-input i {
+  color: #222222;
+  font-size: 16px;
+}
+.dove-search-input input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  background: transparent;
+}
+
+.dest-list-label {
+  color: #717171;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+.dest-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.dest-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  padding: 10px 6px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+.dest-item:hover {
+  background: #f7f7f7;
+}
+.dest-icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+  background: #ebebeb;
+
+  color: #717171;
+  font-size: 20px;
+}
+.dest-text h6 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+.dest-text p {
+  margin: 0;
+  font-size: 13px;
+  color: #717171;
+}
+
+/* Calendario dentro al modal */
+.modal-calendar .months-container {
+  flex-direction: column;
+  gap: 24px; /* gli spazi */
+}
+/* riempiono la cella della griglia, niente overflow su mobile (giorni) */
+.modal-calendar .day-btn {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  cursor: pointer;
+}
+.day-btn.selected {
+  background-color: #222222;
+  color: #ffffff;
+}
+.day-btn.in-range {
+  background-color: #ebebeb;
+}
+
+/* Righe ospiti STYLES */
+.guest-label {
+  font-weight: 600;
+  font-size: 15px;
+}
+.guest-sub {
+  font-size: 13px;
+  color: #717171;
+}
+
+.search-modal-footer {
+  flex-shrink: 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 16px;
+  background: #ffffff;
+  border-top: 1px solid #ebebeb;
+}
+.btn-clear-all {
+  border: none;
+  background: none;
+
+  color: #222222;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: underline;
+
+  cursor: pointer;
+}
+.btn-search-submit {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 14px 24px;
+
+  border: none;
+  border-radius: 12px;
+
+  background-color: var(--search-bg-color);
+  color: #ffffff;
+
+  font-weight: 600;
+  font-size: 15px;
+
+  cursor: pointer;
+}
+.btn-search-submit:hover {
+  background-color: #e31c5f;
+}
+
+/* Navbar desktop più stretta su tablet (841-991px) */
+@media (max-width: 991.98px) {
+  .nav-center {
+    gap: 28px; /* evita l'overflow orizzontale dovuto al gap di 70px tra le voci */
+  }
+}
+
+/* BREAKPOINT 840px  */
+@media (max-width: 840px) {
+  nav,
+  .search-bar,
+  .dropdown-container {
+    display: none;
+  }
+  .mobile-search-header {
+    display: block;
+  }
 }
