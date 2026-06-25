@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
 /* FONTS:  
 font-family: "Raleway", sans-serif; ----> MOLTO SIMILE ad OFFICIAL AIRBNB
 font-family: "Nunito Sans", sans-serif; ----> Anche questa
@@ -94,7 +94,6 @@ main {
 }
 .carousel-controls .btn i {
   font-size: 0.85rem;
-
 }
 nav {
   padding: 20px var(--page-gutter);
@@ -132,6 +131,8 @@ nav {
   padding-bottom: 12px;
 
   transition: all 0.3s ease;
+
+  position: relative;
 }
 
 .nav-item img {
@@ -151,7 +152,26 @@ nav {
 
 .nav-item.active {
   color: black;
-  border-bottom: 3px solid black;
+}
+.nav-item::after {
+  content: "";
+
+  position: absolute;
+
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
+  height: 3px;
+
+  background-color: black;
+
+  transform: scaleX(0);
+
+  transition: transform 0.3s ease;
+}
+.nav-item:hover::after {
+  transform: scaleX(1);
 }
 
 /* MENU DESTRA */
@@ -164,15 +184,21 @@ nav {
 .host-btn {
   border: none;
   background: transparent;
+
   cursor: pointer;
 
   font-weight: 600;
   font-size: 14px;
 
-  transition: 0.2s ease;
+  padding: 12px;
+
+  border-radius: 999px;
+
+  transition: background-color 0.25s ease;
 }
+
 .host-btn:hover {
-  transform: translateY(-2px);
+  background-color: #f7f7f7;
 }
 
 .menu-container {
@@ -183,23 +209,35 @@ nav {
 
 /* GLOBE and HAMBURGER MENU - ICONS */
 .icon-btn {
-  width: 42px;
-  height: 42px;
+  width: 48px;
+  height: 48px;
+
+  border: 1px solid #dddddd;
+  border-radius: 50%;
+
+  background-color: white;
 
   display: flex;
-  align-items: center;
   justify-content: center;
-
-  border: 1px solid #ddd;
-  border-radius: 50%;
-  background-color: #f7f7f7;
+  align-items: center;
 
   cursor: pointer;
 
-  transition: 0.2s ease;
+  transition:
+    background-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
+
 .icon-btn:hover {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  background-color: #f7f7f7;
+
+  transform: scale(1.05);
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+.icon-btn ion-icon {
+  font-size: 22px;
 }
 .menu-container ion-icon {
   font-size: 1.25rem;
@@ -310,7 +348,7 @@ nav {
   pointer-events: auto;
 }
 
-  
+
 /* ANIMATION */
 .fade-item {
   opacity: 0;
@@ -457,7 +495,39 @@ nav {
 .guest-row:not(:last-child) {
   border-bottom: 1px solid #ebebeb;
 }
+.language-menu {
+  width: 500px;
 
+  background-color: white;
+
+  border-radius: 24px;
+
+  padding: 24px;
+
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.language-menu h3 {
+  margin-bottom: 20px;
+}
+
+.language-menu button {
+  border: none;
+
+  background: transparent;
+
+  padding: 12px 16px;
+
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  transition: background-color 0.2s ease;
+}
+
+.language-menu button:hover {
+  background-color: #f7f7f7;
+}
 .counter {
   display: flex;
 
@@ -486,96 +556,96 @@ nav {
 }
 
 /* SECTION */
-.badge-love{ /* HEART */
+.badge-love {
+  /* HEART */
   font-size: 0.8rem;
   color: rgb(76, 76, 76);
 }
 
-.card-mostra-tutto{
+.card-mostra-tutto {
   cursor: pointer;
   aspect-ratio: 4 / 3;
 }
 
 /* CARD STYLES */
 .card-show-all {
-    cursor: pointer;
-    aspect-ratio: 4 / 3;
-    background-color: #f7f7f7;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-    animation: showAllEntrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    opacity: 0; 
+  cursor: pointer;
+  aspect-ratio: 4 / 3;
+  background-color: #f7f7f7;
+  transition:
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+  animation: showAllEntrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
 }
 .card-show-all:hover {
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
-
 .collage-container {
-    width: 130px;
-    height: 75px;
-    position: relative; 
-    margin-top: 15px;
+  width: 130px;
+  height: 75px;
+  position: relative;
+  margin-top: 15px;
 }
 
 .collage-img {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 8px;
-    border: 2px solid #ffffff; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); 
-    position: absolute;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  position: absolute;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-
 .img-left {
-    top: 12px;
-    left: 12px;
-    transform: rotate(-12deg);
-    z-index: 1;
+  top: 12px;
+  left: 12px;
+  transform: rotate(-12deg);
+  z-index: 1;
 }
 
 .img-right {
-    top: 12px;
-    right: 12px;
-    transform: rotate(12deg);
-    z-index: 2;
+  top: 12px;
+  right: 12px;
+  transform: rotate(12deg);
+  z-index: 2;
 }
 
 .img-center {
-    top: 4px;
-    left: 35px;
-    transform: rotate(0deg);
-    z-index: 3;
+  top: 4px;
+  left: 35px;
+  transform: rotate(0deg);
+  z-index: 3;
 }
 
 .card-show-all:hover .img-left {
-    left: 0px;
-    transform: rotate(-22deg);
+  left: 0px;
+  transform: rotate(-22deg);
 }
 
 .card-show-all:hover .img-right {
-    right: 0px;
-    transform: rotate(22deg);
+  right: 0px;
+  transform: rotate(22deg);
 }
 
 .card-show-all:hover .img-center {
-    top: -2px;
-    transform: scale(1.06) rotate(0deg);
+  top: -2px;
+  transform: scale(1.06) rotate(0deg);
 }
 
 @keyframes showAllEntrance {
-    from {
-        opacity: 0;
-        transform: translateY(20px) scale(0.97);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
-
 
 /* CATEGORY SECTION*/
 .esperienza-card {
@@ -603,14 +673,16 @@ nav {
 .airbnb-footer {
   background-color: var(--footer-bg-color);
   color: #222222;
-  font-family: -apple-system, BlinkMacSystemFont, "Montserrat", Roboto, Helvetica, Arial, sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Montserrat", Roboto, Helvetica, Arial,
+    sans-serif;
   font-size: 14px;
 
   flex-shrink: 0;
 }
 
 .airbnb-footer .container {
-  max-width: 100%; 
+  max-width: 100%;
   padding-inline: var(--page-gutter);
 }
 
@@ -669,7 +741,7 @@ nav {
 }
 
 .settings-social-wrap {
-    width: 100%;
+  width: 100%;
 }
 
 @media (min-width: 992px) {
@@ -1057,3 +1129,7 @@ nav {
     display: block;
   }
 }
+
+  .settings-social-wrap {
+    width: auto;
+  }
