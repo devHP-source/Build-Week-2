@@ -120,6 +120,28 @@ guestBtn.addEventListener("click", () => {
   </div>
 `
 })
+/* HAMBURGER MENU */
+const languageBtn = document.getElementById("language-btn");
+const menuBtn = document.getElementById("menu-btn");
+languageBtn.addEventListener("click", () => {
+  dropdown.classList.toggle("open");
+
+  dropdown.innerHTML = `
+    <div class="language-menu">
+
+      <h3>Lingua e regione</h3>
+
+      <button>Italiano</button>
+
+      <button>English</button>
+
+      <button>Español</button>
+
+      <button>Français</button>
+
+    </div>
+  `;
+});
 
 /* CAROUSEL SCROLL */
 document.querySelectorAll(".places-section").forEach((section) => { // Ogni sezione ha i suoi button (indipendenti)
