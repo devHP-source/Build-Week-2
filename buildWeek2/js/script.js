@@ -163,6 +163,9 @@ function wireGuestCounters(scope, onChange) {
     });
   });
 }
+/* NAVBAR - Gestione pulsante attivo */
+
+
 
 const dropdown = document.getElementById("dropdown-container");
 const searchBar = document.querySelector(".search-bar");
@@ -476,4 +479,25 @@ document.querySelectorAll(".places-section").forEach((section) => {
   track.addEventListener("scroll", updateButtons);
   window.addEventListener("resize", updateButtons);
   updateButtons();
+});
+
+
+
+
+
+const navItems = document.querySelectorAll(".nav-item");
+
+console.log(navItems);
+
+navItems.forEach((item) => {
+  item.addEventListener("click", () => {
+
+    console.log("Hai cliccato:", item.id);
+
+    navItems.forEach((nav) => {
+      nav.classList.remove("active");
+    });
+
+    item.classList.add("active");
+  });
 });
