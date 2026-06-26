@@ -201,7 +201,7 @@
                 <div class="row">
                     <div id="info-room" class="col-7">
                         <div id="title" class="my-4">
-                            <h4 class="text-nowrap">Crabtree, Australia. Intero alloggio: chalet</h4>
+                            <h4>Crabtree, Australia. Intero alloggio: chalet</h4>
                             <p>2 ospiti · Monolocale · 1 letto · 1 bagno</p>
                             <div class="d-flex align-items-center">
                                 <div class="pe-1">
@@ -390,7 +390,9 @@
                         </div>
                     </div>
                     <aside id="check-dates" class="col-5 d-flex justify-content-end">
-                        <div id="sticky-element" class="p-5">
+                        <button class="drawer-close" type="button" aria-label="Chiudi">&times;</button>
+                        <div id="sticky-element">
+                            <div class="booking-card">
                             <h4>Aggiungi le date per conoscere i prezzi</h4>
                             <div class="row form-container-border border">
                                 <div class="form-btn-container col-6 border-end no-gutters dropdown">
@@ -398,27 +400,23 @@
                                         class="btn w-100 d-flex justify-content-between align-items-center"
                                         type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <span class="text-start">
-                                            <strong class="d-flex">CHECK-IN</strong>
+                                            <strong>CHECK-IN</strong>
                                             <p>Aggiungi una data</p>
                                         </span>
                                     </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdown-checkin-btn">
-                                        <li><a class="dropdown-item" href="#">Action</a></li>
-                                    </ul>
+                                    <div class="dropdown-menu room-date-dd" aria-labelledby="dropdown-checkin-btn"></div>
                                 </div>
                                 <div class="form-btn-container col-6 no-gutters dropdown">
                                     <button id="dropdown-checkout-btn"
                                         class="btn w-100 d-flex justify-content-between align-items-center"
                                         type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <span class="text-start">
-                                            <strong class="d-flex">CHECK-OUT</strong>
+                                            <strong>CHECK-OUT</strong>
                                             <p>Aggiungi una data</p>
                                         </span>
 
                                     </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdown-checkout-btn">
-                                        <li><a class="dropdown-item" href="#">Action</a></li>
-                                    </ul>
+                                    <div class="dropdown-menu room-date-dd" aria-labelledby="dropdown-checkout-btn"></div>
                                 </div>
                             </div>
                             <div class="mb-3 row form-container-border border-bottom border-start border-end">
@@ -427,14 +425,37 @@
                                         class="btn w-100 d-flex justify-content-between align-items-center"
                                         type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <span class="text-start">
-                                            <strong class="d-flex">OSPITI</strong>
+                                            <strong>OSPITI</strong>
                                             <p>1 ospite</p>
                                         </span>
                                         <i class="bi bi-chevron-down"></i>
                                     </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdown-guests-btn">
-                                        <li><a class="dropdown-item" href="#">Action</a></li>
-                                    </ul>
+                                    <div class="dropdown-menu room-guest-dd" aria-labelledby="dropdown-guests-btn">
+                                        <div class="guest-menu">
+                                            <div class="guest-row">
+                                                <div>
+                                                    <div class="guest-label">Adulti</div>
+                                                    <div class="guest-sub">Da 13 anni in su</div>
+                                                </div>
+                                                <div class="counter">
+                                                    <button type="button" aria-label="Diminuisci adulti">-</button>
+                                                    <span>0</span>
+                                                    <button type="button" aria-label="Aumenta adulti">+</button>
+                                                </div>
+                                            </div>
+                                            <div class="guest-row">
+                                                <div>
+                                                    <div class="guest-label">Bambini</div>
+                                                    <div class="guest-sub">Da 2 a 12 anni</div>
+                                                </div>
+                                                <div class="counter">
+                                                    <button type="button" aria-label="Diminuisci bambini">-</button>
+                                                    <span>0</span>
+                                                    <button type="button" aria-label="Aumenta bambini">+</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div id="available-dates-btn" class="bg-danger btn w-100" role="button">
@@ -442,7 +463,8 @@
                                     <span class="text-white fs-6">Controlla la disponibilità</span>
                                 </div>
                             </div>
-                            <span class="d-flex align-items-center ms-5 mt-5">
+                            </div>
+                            <span class="report-link d-flex align-items-center justify-content-center mt-3">
                                 <svg class="me-2 text-secondary" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
                                     aria-hidden="true" role="presentation" focusable="false"
                                     style="display: block; height: 16px; width: 16px; fill: currentcolor;">
@@ -599,7 +621,7 @@
         <section id="host-details">
             <div class="container my-4">
                 <div class="row d-flex align-items-start mb-5">
-                    <h4 class="text-nowrap mt-3">Ti presentiamo l'host</h4>
+                    <h4 class="mt-3">Ti presentiamo l'host</h4>
                     <div class="col-5 pe-5">
                         <div class="card-host mx-1 row border rounded-5 d-flex align-items-center">
                             <div class="col-8 d-flex flex-column align-items-center">
@@ -778,9 +800,196 @@
                 </div>
             </div>
         </section>
+
+        <!-- prenotazione (mobile) -->
+        <div class="drawer-backdrop">
+
+        </div>
+
+        <!-- BARRA PRENOTAZIONE MOBILE: visibile SOLO (@media 840px) -->
+        <div class="mobile-booking-bar">
+            <span class="mobile-booking-label">Aggiungi le date per i prezzi</span>
+            <button type="button" class="mobile-booking-btn">Controlla la disponibilità</button>
+        </div>
     </main>
 
+ <!-- FOOTER SECTION: da PAULO -->
+    <footer class="airbnb-footer pt-5 pb-4">
+      <div class="container">
+        <div class="row">
 
+          <div class="col-12 col-md-4 mb-4 mb-md-0">
+            <h5 class="fw-semibold">Assistenza</h5>
+            <ul>
+              <li><a href="#">Centro Assistenza</a></li>
+              <li><a href="#">Ricevi assistenza per un problema legato alla sicurezza</a></li>
+              <li><a href="#">AirCover</a></li>
+              <li><a href="#">Antidiscriminazione</a></li>
+              <li><a href="#">Supporto alla disabilità</a></li>
+              <li><a href="#">Opzioni di cancellazione</a></li>
+              <li><a href="#">Segnala problema nel quartiere</a></li>
+            </ul>
+          </div>
+
+          <hr class="d-md-none footer-mobile-divider">
+
+          <div class="col-12 col-md-4 mb-4 mb-md-0">
+            <h5 class="fw-semibold">Ospitare</h5>
+            <ul>
+              <li><a href="#">Apri un Airbnb</a></li>
+              <li><a href="#">Proponi la tua esperienza su Airbnb</a></li>
+              <li><a href="#">Proponi il tuo servizio su Airbnb</a></li>
+              <li><a href="#">AirCover per gli host</a></li>
+              <li><a href="#">Risorse per gli host</a></li>
+              <li><a href="#">Forum della community</a></li>
+              <li><a href="#">Ospitare responsabilmente</a></li>
+              <li><a href="#">Partecipa a una lezione gratuita sull'ospitalità</a></li>
+              <li><a href="#">Trova un co-host</a></li>
+              <li><a href="#">Invita un host</a></li>
+            </ul>
+          </div>
+
+          <hr class="d-md-none footer-mobile-divider">
+
+          <div class="col-12 col-md-4 mb-4 mb-md-0">
+            <h5 class="fw-semibold">Airbnb</h5>
+            <ul>
+              <li><a href="#">Summer Release 2026</a></li>
+              <li><a href="#">Newsroom</a></li>
+              <li><a href="#">Opportunità di lavoro</a></li>
+              <li><a href="#">Investitori</a></li>
+              <li><a href="#">Gift card</a></li>
+              <li><a href="#">Soggiorni con Airbnb.org</a></li>
+            </ul>
+          </div>
+
+          <hr class="footer-main-divider">
+
+          <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center">
+      
+      <div class="settings-social-wrap order-1 order-lg-2 d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
+        
+        <div class="settings-group d-flex gap-4 mb-3 mb-md-0 fw-semibold me-4">
+          <button class="btn-clean d-flex align-items-center gap-2">
+            <ion-icon name="globe-outline" class="fs-5"></ion-icon> Italiano (IT)
+          </button>
+          <button class="btn-clean d-flex align-items-center gap-1">
+            <span class="fs-5">€</span> EUR
+          </button>
+        </div>
+
+        <div class="social-icons d-flex gap-3 mb-3 mb-md-0">
+          <a href="#" aria-label="Facebook"><ion-icon name="logo-facebook"></ion-icon></a>
+          <a href="#" aria-label="Twitter/X"><ion-icon name="logo-twitter"></ion-icon></a>
+          <a href="#" aria-label="Instagram"><ion-icon name="logo-instagram"></ion-icon></a>
+        </div>
+      </div>
+
+      <div class="copyright-group order-2 order-lg-1 mt-2 mt-lg-0 text-md-start">
+        <span class="d-block d-md-inline mb-1 mb-md-0">&copy; 2026 Airbnb, Inc.</span>
+        <span class="d-none d-md-inline mx-1">·</span>
+        <a href="#">Privacy</a> <span class="mx-1">·</span>
+        <a href="#">Termini</a> <span class="mx-1">·</span>
+        <a href="#">Dettagli dell'azienda</a>
+      </div>
+
+        </div>
+      </div>
+    </footer>
+
+
+<!-- MODALE -->
+    <!-- SEARCH MODALE: schermo interno per: TABLET e MOBILE -->
+    <div class="modal fade search-modal" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content search-modal-content">
+
+                <!-- HEADER/NAV: categorie di nav-->
+                <div class="search-modal-header">
+                    <div class="modal-categories">
+                        <button class="modal-cat active" type="button">
+                            <img src="./assets/icons/earth.png" alt="" />
+                            <span>Tutto</span>
+                        </button>
+                        <button class="modal-cat" type="button">
+                            <img src="./assets/icons/house.png" alt="" />
+                            <span>Alloggi</span>
+                        </button>
+                        <button class="modal-cat" type="button">
+                            <img src="./assets/icons/hot-air-balloon.png" alt="" />
+                            <span>Esperienze</span>
+                        </button>
+                        <button class="modal-cat" type="button">
+                            <img src="./assets/icons/bell.png" alt="" />
+                            <span>Servizi</span>
+                        </button>
+                    </div>
+                    <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Chiudi">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
+
+                
+                <div class="search-modal-body">
+                    <div class="search-accordion">
+
+                        <!-- Inizia la ricerca: il modale DOVE, è messa come default -->
+                        <div class="acc-panel acc-open" data-panel="dove">
+                            <button class="acc-summary" type="button">
+                                <span class="acc-summary-label">Dove</span>
+                                <span class="acc-summary-value" id="dove-value">Cerca destinazioni</span>
+                            </button>
+                            <div class="acc-content">
+                                <h2 class="acc-title" id="searchModalLabel">Dove?</h2>
+                                <div class="dove-search-input">
+                                    <i class="bi bi-search"></i>
+                                    <input type="text" id="modal-destination-input" placeholder="Cerca destinazioni" aria-label="Cerca destinazioni" />
+                                </div>
+                                <p class="dest-list-label">Destinazioni suggerite</p>
+                                <ul class="dest-list" id="modal-dest-list">
+                                    <!-- JS -->
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- modale: QUANDO -->
+                        <div class="acc-panel" data-panel="quando">
+                            <button class="acc-summary" type="button">
+                                <span class="acc-summary-label">Quando</span>
+                                <span class="acc-summary-value" id="quando-value">Aggiungi date</span>
+                            </button>
+                            <div class="acc-content">
+                                <h2 class="acc-title">Quando vuoi partire?</h2>
+                                <div class="modal-calendar" id="modal-calendar"><!-- JS --></div>
+                            </div>
+                        </div>
+
+                        <!-- modale: CHI -->
+                        <div class="acc-panel" data-panel="chi">
+                            <button class="acc-summary" type="button">
+                                <span class="acc-summary-label">Chi</span>
+                                <span class="acc-summary-value" id="chi-value">Aggiungi ospiti</span>
+                            </button>
+                            <div class="acc-content">
+                                <h2 class="acc-title">Chi viene?</h2>
+                                <div class="modal-guests" id="modal-guests"><!-- JS --></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- FOOTER modale: cancella e ricerca -->
+                <div class="search-modal-footer">
+                    <button type="button" class="btn-clear-all" id="modal-clear">Cancella tutto</button>
+                    <button type="button" class="btn-search-submit" id="modal-search">
+                        <i class="bi bi-search"></i> Ricerca
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 
     <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>

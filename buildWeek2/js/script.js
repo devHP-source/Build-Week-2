@@ -163,10 +163,8 @@ function wireGuestCounters(scope, onChange) {
     });
   });
 }
+
 /* NAVBAR - Gestione pulsante attivo */
-
-
-
 const dropdown = document.getElementById("dropdown-container");
 const searchBar = document.querySelector(".search-bar");
 
@@ -246,6 +244,27 @@ if (dropdown && searchBar) {
     }
   });
 }
+
+/* Selezionando una categoria nella navbar, la STESSA categoria diventa
+   reponsive sia per: Desktop, tablet, mobile e modale. */
+function setupDependentCategories(selectors) {
+  const groups = selectors
+    .map((sel) => Array.from(document.querySelectorAll(sel)))
+    .filter((group) => group.length > 0);
+
+  const selectIndex = (index) => {
+    groups.forEach((group) => {
+      group.forEach((el, i) => el.classList.toggle("active", i === index));
+    });
+  };
+
+  groups.forEach((group) => {
+    group.forEach((el, i) => {
+      el.addEventListener("click", () => selectIndex(i));
+    });
+  });
+}
+setupDependentCategories([".nav-item", ".mobile-cat", ".modal-cat"]);
 
 /* SEARCH MODALE per mobile */
 const searchModalEl = document.getElementById("searchModal");
@@ -482,22 +501,45 @@ document.querySelectorAll(".places-section").forEach((section) => {
 });
 
 
+/* METODO: IIFE (Self-Invoking Functions): https://www.w3schools.com/js/js_function_iife.asp
+* questo dice al JS che questa 'Questa è un'espressione (un valore), non una dichiarazione.'
+* come dire "tratta come un'espressione"
+* Perchè l'ho usato, per evitare conflitti per adesso.
+*/
+(function () { // prenotazione mobile: la barra apre la booking-card dal basso
+  const btn = document.querySelector(".mobile-booking-btn");
+  const drawer = document.getElementById("check-dates");
+  const backdrop = document.querySelector(".drawer-backdrop");
+  const closeBtn = document.querySelector(".drawer-close");
+  if (!btn || !drawer) return;
 
+  const open = () => {
+    drawer.classList.add("drawer-open");
+    if (backdrop) backdrop.classList.add("show");
+    document.body.style.overflow = "hidden";
+  };
+  const close = () => {
+    drawer.classList.remove("drawer-open");
+    if (backdrop) backdrop.classList.remove("show");
+    document.body.style.overflow = "";
+  };
 
+  btn.addEventListener("click", open);
+  if (closeBtn) closeBtn.addEventListener("click", close);
+  if (backdrop) backdrop.addEventListener("click", close);
 
-const navItems = document.querySelectorAll(".nav-item");
-
-console.log(navItems);
-
-navItems.forEach((item) => {
-  item.addEventListener("click", () => {
-
-    console.log("Hai cliccato:", item.id);
-
-    navItems.forEach((nav) => {
-      nav.classList.remove("active");
-    });
-
-    item.classList.add("active");
+  window.matchMedia("(max-width: 840px)").addEventListener("change", (e) => { // chiudo il 'prenotazione mobile' quando si superano gli 840px.
+    if (!e.matches) close();
   });
-});
+})();
+
+(function () { // Riempie i dropdown CHECK-IN/CHECK-OUT con un calendario statico per il momento
+  let days = "";
+  for (let i = 1; i <= 31; i++) {
+    days += `<button class="day-btn" type="button">${i}</button>`;
+  }
+  const calendar = `<div class="calendar-menu"><div class="month"><h4>Luglio 2026</h4><div class="weekdays"><span>L</span><span>M</span><span>M</span><span>G</span><span>V</span><span>S</span><span>D</span></div><div class="days-grid">${days}</div></div></div>`;
+  document.querySelectorAll(".room-date-dd").forEach((el) => {
+    el.innerHTML = calendar;
+  });
+})();

@@ -918,6 +918,7 @@ nav {
 }
 
 .mobile-cat {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -932,12 +933,34 @@ nav {
   font-size: 13px;
 
   padding-bottom: 10px;
-  border-bottom: 2px solid transparent;
-  transition: color 0.2s ease;
+  transition: all 0.3s ease;
+}
+.mobile-cat:hover {
+  color: #222222;
+  transform: scale(1.03);
 }
 .mobile-cat.active {
   color: #222222;
-  border-bottom-color: #222222;
+}
+/* Underline che cresce dal centro (come .nav-item desktop) */
+.mobile-cat::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 2px;
+
+  background-color: #222222;
+
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+.mobile-cat:hover::after,
+.mobile-cat.active::after {
+  transform: scaleX(1);
 }
 
 .cat-img-wrap {
@@ -975,6 +998,7 @@ nav {
   gap: 16px; /* gli spazi nel modale per .mobile-cat */
 }
 .modal-cat {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -989,16 +1013,39 @@ nav {
   font-weight: 600;
 
   padding-bottom: 6px;
-  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+.modal-cat:hover {
+  color: #222222;
+  transform: scale(1.03);
+}
+.modal-cat.active {
+  color: #222222;
 }
 .modal-cat img {
   width: 26px;
   height: 26px;
   object-fit: contain;
 }
-.modal-cat.active {
-  color: #222222;
-  border-bottom-color: #222222;
+/* Underline che cresce dal centro (come .nav-item desktop) */
+.modal-cat::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 2px;
+
+  background-color: #222222;
+
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+.modal-cat:hover::after,
+.modal-cat.active::after {
+  transform: scaleX(1);
 }
 .modal-close-btn {
   position: absolute;
