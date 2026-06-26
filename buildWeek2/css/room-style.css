@@ -288,7 +288,7 @@ hr {
     color: rgb(130, 130, 130);
     font-size: 10pt;
     margin: 0;
-    width: 280px;
+    max-width: 280px; /* tetto, non larghezza fissa: sotto i 1200px il testo va a capo nella sua colonna invece di sforare */
 }
 #to-know h6{
     font-size: 11pt;

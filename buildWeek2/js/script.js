@@ -1,5 +1,4 @@
-const destinations = [
-  /* DATI per le DESTINATIONZI (possiamo modificarli anche dopo) */
+const destinations = [ /* DATI per le DESTINATIONZI (possiamo modificarli anche dopo) */
   {
     title: "Nelle vicinanze",
     subtitle: "Scopri le opzioni intorno a te",
@@ -47,8 +46,7 @@ const destinations = [
   },
 ];
 
-const monthsData = [
-  /* DATI per i MESI */
+const monthsData = [ /* DATI per i MESI */
   {
     name: "Giugno",
     days: 30,
@@ -59,8 +57,7 @@ const monthsData = [
   },
 ];
 
-const guestTypes = [
-  /* DATI per i TIPI di guest */
+const guestTypes = [ /* DATI per i TIPI di guest */
   {
     key: "adulti",
     label: "Adulti",
@@ -73,22 +70,19 @@ const guestTypes = [
   },
 ];
 
-const guestState = {
-  // lo stato inizio
+const guestState = { // lo stato inizio
   adulti: 0,
   bambini: 0,
 };
 
 /* ho migliorate il codice di Antonio per far facilitare il render di HTML */
-function weekdaysHTML() {
-  // SETTIMANE
+function weekdaysHTML() { // SETTIMANE
   return ["L", "M", "M", "G", "V", "S", "D"]
     .map((d) => `<span>${d}</span>`)
     .join("");
 }
 
-function monthHTML(month) {
-  // MESI
+function monthHTML(month) { // MESI
   let days = "";
   for (let i = 1; i <= month.days; i++) {
     days += `<button class="day-btn" type="button" data-day="${i}" data-month="${month.name}">${i}</button>`;
@@ -101,13 +95,11 @@ function monthHTML(month) {
     </div>`;
 }
 
-function calendarHTML() {
-  // CALENDARIO
+function calendarHTML() { // CALENDARIO
   return `<div class="months-container">${monthsData.map(monthHTML).join("")}</div>`;
 }
 
-function guestRowsHTML() {
-  // GUEST
+function guestRowsHTML() { // GUEST
   return guestTypes
     .map(
       (g) => `
@@ -126,8 +118,7 @@ function guestRowsHTML() {
     .join("");
 }
 
-function destinationListHTML() {
-  // DESTINAZIONI
+function destinationListHTML() { // DESTINAZIONI
   return destinations
     .map(
       (d, i) => `
@@ -195,8 +186,7 @@ function showDesktopPanel(id) {
   dropdown.innerHTML = desktopPanels[id]();
   dropdown.classList.add("open");
 
-  if (id === "where-btn") {
-    // Destinazioni per desktop scrivono "Dove" e chiudono il pannello
+  if (id === "where-btn") { // Destinazioni per desktop scrivono "Dove" e chiudono il pannello
     const summary = document.querySelector("#where-btn p");
     dropdown.querySelectorAll(".destination-btn").forEach((b) => {
       b.addEventListener("click", () => {
@@ -206,14 +196,13 @@ function showDesktopPanel(id) {
     });
   }
 
-  if (id === "guest-btn") {
-    // Contatori ospiti per desktop e aggiornano il riepilogo "Chi" nella barra
+  if (id === "guest-btn") { // Contatori ospiti per desktop e aggiornano il riepilogo "Chi" nella barra
     const summary = document.querySelector("#guest-btn p");
     const refreshChi = () => {
       const total = guestState.adulti + guestState.bambini;
       summary.textContent =
         total > 0
-          ? `${total} ospite${total > 1 ? "i" : ""}`
+          ? `${total} ospit${total > 1 ? "i" : "e"}`
           : "Aggiungi ospiti";
     };
     refreshChi(); // allinea il riepilogo allo stato condiviso all'apertura
@@ -305,8 +294,7 @@ if (searchModalEl) {
     updateChiValue();
   });
 
-  destListEl.querySelectorAll(".dest-item").forEach((item) => {
-    // Una volta riempiti i dati, passa al prossimo modale: DOVE, QUANDO, CHI
+  destListEl.querySelectorAll(".dest-item").forEach((item) => { // Una volta riempiti i dati, passa al prossimo modale: DOVE, QUANDO, CHI
     item.addEventListener("click", () => {
       const d = destinations[item.dataset.dest];
       doveValue.textContent = d.title;
@@ -315,16 +303,14 @@ if (searchModalEl) {
     });
   });
 
-  function updateChiValue() {
-    //  Contatori ospiti e aggiorna riepilogo "Chi"
+  function updateChiValue() { //  Contatori ospiti e aggiorna riepilogo "Chi"
     const total = guestState.adulti + guestState.bambini;
     chiValue.textContent =
-      total > 0 ? `${total} ospite${total > 1 ? "i" : ""}` : "Aggiungi ospiti";
+      total > 0 ? `${total} ospit${total > 1 ? "i" : "e"}` : "Aggiungi ospiti";
   }
   wireGuestCounters(guestsEl, updateChiValue);
 
-  searchModalEl.querySelector("#modal-clear").addEventListener("click", () => {
-    // Cancella tutto (reset button)
+  searchModalEl.querySelector("#modal-clear").addEventListener("click", () => { // Cancella tutto (reset button)
     guestState.adulti = 0;
     guestState.bambini = 0;
     guestsEl.innerHTML = guestRowsHTML();
@@ -364,7 +350,7 @@ if (searchModalEl) {
 const languageBtn = document.getElementById("language-btn");
 const languageDropdown = document.getElementById("language-dropdown");
 
-languageBtn.addEventListener("click", () => {
+if (languageBtn && languageDropdown) languageBtn.addEventListener("click", () => {
   languageDropdown.classList.toggle("open");
 
   if (languageDropdown.classList.contains("open")) {
@@ -398,7 +384,7 @@ languageBtn.addEventListener("click", () => {
   }
 });
 
-document.addEventListener("click", (event) => {
+if (languageBtn && languageDropdown) document.addEventListener("click", (event) => {
   if (
     !languageBtn.contains(event.target) &&
     !languageDropdown.contains(event.target)
@@ -410,7 +396,7 @@ document.addEventListener("click", (event) => {
 const menuBtn = document.getElementById("menu-btn");
 const menuDropdown = document.getElementById("menu-dropdown");
 
-menuBtn.addEventListener("click", () => {
+if (menuBtn && menuDropdown) menuBtn.addEventListener("click", () => {
   menuDropdown.classList.toggle("open");
 
   if (menuDropdown.classList.contains("open")) {
@@ -457,7 +443,7 @@ menuBtn.addEventListener("click", () => {
   }
 });
 
-document.addEventListener("click", (event) => {
+if (menuBtn && menuDropdown) document.addEventListener("click", (event) => {
   if (!menuBtn.contains(event.target) && !menuDropdown.contains(event.target)) {
     menuDropdown.classList.remove("open");
     menuDropdown.innerHTML = "";
@@ -465,8 +451,7 @@ document.addEventListener("click", (event) => {
 });
 
 /* CAROUSEL SCROLL */
-document.querySelectorAll(".places-section").forEach((section) => {
-  // Ogni sezione ha i suoi button (indipendenti)
+document.querySelectorAll(".places-section").forEach((section) => { // Ogni sezione ha i suoi button (indipendenti)
   const track = section.querySelector(".airbnb-track");
   const btnPrev = section.querySelector(".btn-prev");
   const btnNext = section.querySelector(".btn-next");
@@ -488,8 +473,7 @@ document.querySelectorAll(".places-section").forEach((section) => {
     track.scrollBy({ left: getScrollAmount(), behavior: "smooth" });
   });
 
-  const updateButtons = () => {
-    // Abilita/disabilita i bottoni in base alla posizione di scroll
+  const updateButtons = () => { // Abilita/disabilita i bottoni in base alla posizione di scroll
     const maxScroll = track.scrollWidth - track.clientWidth;
     btnPrev.disabled = track.scrollLeft <= 1;
     btnNext.disabled = track.scrollLeft >= maxScroll - 1;
@@ -501,12 +485,7 @@ document.querySelectorAll(".places-section").forEach((section) => {
 });
 
 
-/* METODO: IIFE (Self-Invoking Functions): https://www.w3schools.com/js/js_function_iife.asp
-* questo dice al JS che questa 'Questa è un'espressione (un valore), non una dichiarazione.'
-* come dire "tratta come un'espressione"
-* Perchè l'ho usato, per evitare conflitti per adesso.
-*/
-(function () { // prenotazione mobile: la barra apre la booking-card dal basso
+function setupBookingDrawer() { // prenotazione mobile (la barra in basso apre e chiude la booking-card)
   const btn = document.querySelector(".mobile-booking-btn");
   const drawer = document.getElementById("check-dates");
   const backdrop = document.querySelector(".drawer-backdrop");
@@ -531,9 +510,10 @@ document.querySelectorAll(".places-section").forEach((section) => {
   window.matchMedia("(max-width: 840px)").addEventListener("change", (e) => { // chiudo il 'prenotazione mobile' quando si superano gli 840px.
     if (!e.matches) close();
   });
-})();
+}
+setupBookingDrawer();
 
-(function () { // Riempie i dropdown CHECK-IN/CHECK-OUT con un calendario statico per il momento
+function fillRoomCalendars() { // Riempie i dropdown CHECK-IN / CHECK-OUT con un calendario statico
   let days = "";
   for (let i = 1; i <= 31; i++) {
     days += `<button class="day-btn" type="button">${i}</button>`;
@@ -542,4 +522,5 @@ document.querySelectorAll(".places-section").forEach((section) => {
   document.querySelectorAll(".room-date-dd").forEach((el) => {
     el.innerHTML = calendar;
   });
-})();
+}
+fillRoomCalendars();
