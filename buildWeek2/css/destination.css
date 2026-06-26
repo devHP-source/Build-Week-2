@@ -1,0 +1,43 @@
+/* ==========================================================================
+   CAROUSEL STYLE FOR DETAIL PAGE 
+   ========================================================================== */
+
+/* Nascondiamo la pagina di dettaglio all'avvio e diamo le spaziature */
+#detail-page {
+  display: none; 
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+}
+
+
+
+/* Forza le immagini del carosello ad avere tutte la stessa altezza */
+.airbnb-card-img {
+  width: 100%;
+  aspect-ratio: 4 / 3; 
+  object-fit: cover;
+  border-radius: 12px; 
+}
+
+.card {
+  border: none;
+  background: transparent;
+}
+
+/* Mostra le freccette del carosello solo quando l'utente passa il mouse sopra la card */
+.card .carousel-control-prev,
+.card .carousel-control-next {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.card:hover .carousel-control-prev,
+.card:hover .carousel-control-next {
+  opacity: 1;
+}
+
+.carousel-inner {
+  border-radius: 12px; 
+  overflow: hidden;    
+}
+

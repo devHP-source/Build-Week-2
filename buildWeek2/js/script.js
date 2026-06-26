@@ -1,50 +1,5 @@
-const destinations = [ /* DATI per le DESTINATIONZI (possiamo modificarli anche dopo) */
-  {
-    title: "Nelle vicinanze",
-    subtitle: "Scopri le opzioni intorno a te",
-  },
-  {
-    title: "Parigi, Francia",
-    subtitle:
-      "Perché hai aggiunto alloggi nei preferiti per questa località: Parigi",
-  },
-  {
-    title: "Barcellona, Spagna",
-    subtitle: "Famosa meta balneare",
-  },
-  {
-    title: "Firenze, Toscana",
-    subtitle: "Ideale per un weekend fuori porta",
-  },
-  {
-    title: "Napoli, Campania",
-    subtitle: 'Per attrazioni come "Parco archeologico di Pompei"',
-  },
-  {
-    title: "Città di Londra, Regno Unito",
-    subtitle: "Per la sua animata vita notturna",
-  },
-  {
-    title: "Torino, Piemonte",
-    subtitle: "Per la splendida architettura",
-  },
-  {
-    title: "Budapest, Ungheria",
-    subtitle: "Per la sua eccezionale cucina",
-  },
-  {
-    title: "Praga, Cechia",
-    subtitle: 'Per attrazioni come "Castello di Praga"',
-  },
-  {
-    title: "Valencia, Spagna",
-    subtitle: "Per la splendida architettura",
-  },
-  {
-    title: "Vienna, Austria",
-    subtitle: "Per la sua eccezionale cucina",
-  },
-];
+
+
 
 const monthsData = [ /* DATI per i MESI */
   {
