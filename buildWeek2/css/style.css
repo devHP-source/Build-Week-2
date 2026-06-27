@@ -658,6 +658,13 @@ nav {
 .counter button:hover {
   background-color: #f7f7f7;
 }
+.counter button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+.counter button:disabled:hover {
+  background: white; /* nessun feedback hover sui pulsanti disabilitati */
+}
 .language-dropdown {
   position: absolute;
 
