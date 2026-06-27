@@ -820,9 +820,18 @@ nav {
   flex-shrink: 0;
 }
 
+
 .airbnb-footer .container {
   max-width: 100%;
+  margin-inline: 0;
   padding-inline: var(--page-gutter);
+}
+
+@media (min-width: 768px) {
+  .airbnb-footer .container {
+    max-width: 1280px;
+    margin-inline: auto;
+  }
 }
 
 /* Links */
