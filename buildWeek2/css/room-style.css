@@ -184,7 +184,7 @@ hr {
 .dropdown-toggle::after {
     display: none !important;
 }
-#dropdown-guests{
+#dropdown-guests-btn{
     border-radius: 10px;
 }
 .form-container-border{
