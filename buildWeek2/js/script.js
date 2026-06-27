@@ -138,6 +138,16 @@ function showDesktopPanel(id) {
     return;
   }
   openDesktopPanel = id;
+
+  if (languageDropdown) { // chiudi gli altri menu (lingua / hamburger) quando si apre un pannello di ricerca
+    languageDropdown.classList.remove("open");
+    languageDropdown.innerHTML = "";
+  }
+  if (menuDropdown) {
+    menuDropdown.classList.remove("open");
+    menuDropdown.innerHTML = "";
+  }
+
   dropdown.innerHTML = desktopPanels[id]();
   dropdown.classList.add("open");
 
@@ -187,6 +197,10 @@ if (dropdown && searchBar) {
       closeDesktopPanel();
     }
   });
+
+  window.matchMedia("(max-width: 840px)").addEventListener("change", (e) => { // Passando a mobile chiudi il pannello desktop, altrimenti lo stato resta "aperto"
+    if (e.matches) closeDesktopPanel();
+  });
 }
 
 /* Selezionando una categoria nella navbar, la STESSA categoria diventa
@@ -229,8 +243,7 @@ if (searchModalEl) {
   guestsEl.innerHTML = guestRowsHTML();
 
   function openAccPanel(panel) {
-    // Accordion: un solo pannello aperto alla volta
-    panels.forEach((p) => p.classList.remove("acc-open"));
+    panels.forEach((p) => p.classList.remove("acc-open")); // Accordion: un solo pannello aperto alla volta
     panel.classList.add("acc-open");
   }
   panels.forEach((panel) => {
@@ -275,6 +288,9 @@ if (searchModalEl) {
     if (doveInput) doveInput.value = "";
     quandoValue.textContent = "Aggiungi date";
     chiValue.textContent = "Aggiungi ospiti";
+
+    const desktopChi = document.querySelector("#guest-btn p");
+    if (desktopChi) desktopChi.textContent = "Aggiungi ospiti";
   });
 
   // Logica di Ricerca, fai input e chiude appena completati
@@ -414,8 +430,11 @@ document.querySelectorAll(".places-section").forEach((section) => { // Ogni sezi
   if (!track || !btnPrev || !btnNext) return;
 
   const getScrollAmount = () => {
-    const firstCard = track.firstElementChild;
+    // prima card VISIBILE: con un filtro attivo la prima potrebbe essere nascosta
+    // (offsetWidth 0) e darebbe una larghezza NaN -> scrollBy diventerebbe un no-op
+    const firstCard = Array.from(track.children).find((c) => c.offsetWidth > 0);
     const cardWidth = firstCard ? firstCard.offsetWidth : track.clientWidth;
+    if (!cardWidth) return track.clientWidth;
     const visible = Math.max(1, Math.floor(track.clientWidth / cardWidth));
     return cardWidth * visible; // larghezza di una card * quante ne sono visibili
   };
@@ -479,3 +498,161 @@ function fillRoomCalendars() { // Riempie i dropdown CHECK-IN / CHECK-OUT con un
   });
 }
 fillRoomCalendars();
+
+/* "MOSTRA TUTTO": mostra l'header "Stays in <città>" e filtra la sezione cliccata */
+(function setupStaysHeader() {
+  const header = document.getElementById("stays-header");
+  const cityEl = document.getElementById("stays-city");
+  const countEl = document.getElementById("stays-count");
+  const showAllCards = document.querySelectorAll(".card-show-all");
+  if (!header || !cityEl || !countEl || !showAllCards.length) return;
+
+  const pills = header.querySelectorAll(".stays-pill");
+  let activeSection = null;
+
+  /* HERO fadeAnimation attivato al click su "Mostra tutto", solo desktop e tablet (min-width 841px) */
+  const hero = document.getElementById("hero");
+  const heroImgs = hero ? hero.querySelectorAll(".hero-img") : [];
+  const desktopMq = window.matchMedia("(min-width: 841px)");
+  const reduceMq = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let heroTimer = null;
+  let heroIdx = 0;
+
+  function startHero() {
+    if (heroTimer || reduceMq.matches || heroImgs.length < 2) return;
+    heroTimer = setInterval(() => {
+      heroImgs[heroIdx].classList.remove("is-active");
+      heroIdx = (heroIdx + 1) % heroImgs.length;
+      heroImgs[heroIdx].classList.add("is-active");
+    }, 10000); // cambia immagine ogni 10 secondi
+  }
+
+  function stopHero() {
+    if (heroTimer) {
+      clearInterval(heroTimer);
+      heroTimer = null;
+    }
+  }
+
+  /* Sotto 841px l'hero section si nasconde e ferma il timer. Tornando sopra, se una sezione è già
+     aperta, mostra/riavvia l'hero section (anche se il click "Mostra tutto" era avvenuto su mobile) */
+  desktopMq.addEventListener("change", (e) => {
+    if (e.matches) {
+      if (header.classList.contains("is-open")) {
+        document.body.classList.add("has-hero");
+        startHero();
+      }
+    } else {
+      stopHero();
+    }
+  });
+
+
+  const listingCols = (section) => // Le colonne-card "alloggio" di una sezione (esclude la card "Mostra tutto")
+    Array.from(section.querySelectorAll(".airbnb-track > div")).filter((col) =>
+      col.querySelector(".airbnb-card"),
+    );
+
+  document.querySelectorAll(".places-section").forEach((section) => { // Assegna uno stato available/booked a ogni card, in modo deterministico
+    listingCols(section).forEach((col, i) => {
+      col.dataset.status = i % 3 === 2 ? "booked" : "available";
+    });
+  });
+
+  function applyFilter(section, filter) { // Mostra/nasconde le card della sezione in base al filtro e aggiorna il contatore
+    let visible = 0;
+    listingCols(section).forEach((col) => {
+      const show = filter === "all" || col.dataset.status === filter;
+      col.classList.toggle("is-hidden", !show);
+      if (show) visible++;
+    });
+    countEl.textContent = visible;
+    window.dispatchEvent(new Event("resize")); // cambia la larghezza dei button carousel prev e next
+  }
+
+  function setActivePill(filter) {
+    pills.forEach((p) => p.classList.toggle("active", p.dataset.filter === filter));
+  }
+
+  function openFor(card) {
+    const section = card.closest(".places-section");
+    if (!section) return;
+
+    if (activeSection && activeSection !== section) { // ripristina la sezione filtrata in precedenza, così non resta nascosta 
+      listingCols(activeSection).forEach((col) => col.classList.remove("is-hidden"));
+    }
+    activeSection = section;
+    cityEl.textContent = card.dataset.city || "";
+    setActivePill("all");
+    applyFilter(section, "all");
+    header.classList.add("is-open");
+
+    /* HERO solo desktop e tablet (min-width 841px) e sotto 841px resta nascosto */
+    const showHero = !!hero && desktopMq.matches;
+    if (showHero) {
+      document.body.classList.add("has-hero");
+      startHero();
+    }
+
+    (showHero ? hero : header).scrollIntoView({ behavior: "smooth", block: "start" }); // porta in cima all'hero se presente, altrimenti alla "Stays in <città>" 
+  }
+
+  showAllCards.forEach((card) => {
+    card.addEventListener("click", () => openFor(card));
+    card.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
+        e.preventDefault(); // evita lo scroll della pagina sulla barra spaziatrice
+        openFor(card);
+      }
+    });
+  });
+
+  pills.forEach((pill) => {
+    pill.addEventListener("click", () => {
+      setActivePill(pill.dataset.filter);
+      if (activeSection) applyFilter(activeSection, pill.dataset.filter);
+    });
+  });
+})();
+
+/* SCROLL Animation: ogni .places-section fa il fadeUp SOLO entrando scrollando verso il basso.
+   Si resetta solo uscendo dal FONDO (scroll verso l'alto): uscendo dall'alto resta visibile,
+   così risalendo non "salta" dentro e ri-anima solo se si riscende di nuovo fin qui. */
+(function setupScrollReveal() {
+  const sections = document.querySelectorAll(".places-section");
+  if (!sections.length || !("IntersectionObserver" in window)) return;
+
+  let lastY = window.scrollY; // direzione di scroll: true = verso il basso (default anche al primo caricamento)
+  let scrollingDown = true;
+  window.addEventListener(
+    "scroll",
+    () => {
+      const y = window.scrollY;
+      if (y !== lastY) scrollingDown = y > lastY;
+      lastY = y;
+    },
+    { passive: true },
+  );
+
+  const io = new IntersectionObserver( // https://www.html.it/pag/69654/intersection-observer-gestire-la-visibilita-degli-elementi/
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          // .reveal-down innesca il fadeUp: presente solo se entro scrollando verso il basso
+          entry.target.classList.toggle("reveal-down", scrollingDown);
+        } else if (!scrollingDown) {
+          // reset SOLO quando esce dal fondo (scroll verso l'alto): uscendo dall'alto
+          // (scroll giù) resta visibile, così risalendo non riappare di colpo
+          entry.target.classList.remove("is-visible", "reveal-down");
+        }
+      });
+    },
+    { threshold: 0.12 },
+  );
+
+  sections.forEach((section) => {
+    section.classList.add("reveal");
+    io.observe(section);
+  });
+})();

@@ -40,6 +40,11 @@ main {
   flex-grow: 1;
 }
 
+/* .search-bar in absolute (quando hero section è attivo) all'header invece che al viewport */
+header {
+  position: relative;
+}
+
 .img-wrapper {
   aspect-ratio: 4 / 3;
   overflow: hidden;
@@ -1307,4 +1312,185 @@ nav {
 
 .settings-social-wrap {
   width: auto;
+}
+
+/* STAYS HEADER STYLE */
+.stays-header {
+  display: none; /* il JS aggiunge .is-open per mostrarlo */
+  padding-block: 1.5rem 0.5rem;
+}
+.stays-header.is-open {
+  display: block;
+  animation: fadeUp 0.5s ease forwards;
+}
+.stays-count {
+  color: #717171;
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+.stays-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1.25rem;
+}
+.stays-add {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--search-bg-color);
+  color: #ffffff;
+  font-size: 1.25rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.stays-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+.stays-pill {
+  padding: 0.45rem 1.1rem;
+  border: 1px solid #dddddd;
+  border-radius: 999px;
+  background-color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #222222;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+.stays-pill:hover {
+  border-color: #222222;
+}
+.stays-pill.active {
+  border-color: #222222;
+  background-color: #f7f7f7;
+}
+.stays-note,
+.stays-covid {
+  color: #717171;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+.stays-covid a {
+  color: #222222;
+  font-weight: 600;
+}
+
+/* card nascoste dal filtro dei pills */
+.is-hidden {
+  display: none !important;
+}
+
+
+.reveal { /* SCROLL REVEAL Animation: fadeUp solo scrollando verso il basso, resetta all'uscita */
+  opacity: 0; /* stato resettato: invisibile finché la sezione non rientra in vista */
+}
+.reveal.is-visible {
+  opacity: 1; /* visibile SENZA animazione (es. quando si scrolla verso l'alto) */
+}
+.reveal.is-visible.reveal-down {
+  animation: fadeUp 0.6s ease forwards; /* fadeUp solo entrando scrollando verso il basso */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1; /* niente reset e animazione: sempre visibile */
+  }
+  .reveal.is-visible.reveal-down {
+    animation: none;
+  }
+  .stays-header.is-open {
+    animation: none;
+  }
+}
+
+/* HERO SECTION STYLE */
+.hero {
+  display: none; /* nascosto di default e completamente sotto 841px */
+  position: relative;
+  z-index: 1; /* sotto la .search-bar (z-index 10) che ci galleggia sopra */
+  height: clamp(440px, 64vh, 740px);
+  overflow: hidden;
+  margin-inline: calc(-1 * var(--page-gutter)); /* full-bleed: annulla il padding di main */
+  background-color: #111; /* sfondo scuro finché le immagini non sono caricate */
+}
+.hero-slides {
+  position: absolute;
+  inset: 0;
+}
+.hero-img {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  transition: opacity 1.2s ease;
+}
+.hero-img.is-active {
+  opacity: 1;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55); /* overlay quasi nero per il contrasto */
+  -webkit-backdrop-filter: blur(2px); /* blur leggero sulle immagini sottostanti */
+  backdrop-filter: blur(2px);
+}
+
+/* Hero visibile + search-bar in absolute SOLO desktop e tablet */
+@media (min-width: 841px) {
+  body.has-hero .hero {
+    display: block;
+  }
+  body.has-hero .search-bar {
+    position: absolute;
+    top: calc(100% + 30px);
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+  }
+
+  /* Immagini sui HERO SECTION: caricate SOLO qui (desktop + has-hero). Una regola background-image
+     scarica il file solo quando matcha un elemento renderizzato -> nessun download
+     a pagina caricata, su mobile o senza click su "Mostra tutto". */
+  body.has-hero .hero-img--barcellona {
+    background-image: url("../assets/barcellona/barcellona-HERO.jpeg");
+  }
+  body.has-hero .hero-img--parigi {
+    background-image: url("../assets/parigi/parigi-HERO.jpg");
+  }
+  body.has-hero .hero-img--firenze {
+    background-image: url("../assets/firenze/firenze-HERO.jpeg");
+  }
+  body.has-hero .hero-img--napoli {
+    background-image: url("../assets/napoli/napoli-HERO.jpg");
+  }
+  body.has-hero .hero-img--palermo {
+    background-image: url("../assets/palermo/palermo-HERO.jpg");
+  }
+  body.has-hero .hero-img--palawan {
+    background-image: url("../assets/categoryImages/palawan-HERO.jpg");
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-img {
+    transition: none; /* niente crossfade se l'utente preferisce meno movimento */
+    background-attachment: scroll; /* niente parallax se l'utente preferisce meno movimento */
+  }
 }
