@@ -123,6 +123,34 @@
     <!-- MAIN -->
     <main>
 
+        <!-- HERO SECTION -->
+        <section class="hero" id="hero" aria-hidden="true"> <!-- mostrato tramite JS al click su "Mostra tutto" card, solo desktop e tablet (min-width 841px) -->
+            <div class="hero-slides">
+                <div class="hero-img hero-img--barcellona is-active"></div>
+                <div class="hero-img hero-img--parigi"></div>
+                <div class="hero-img hero-img--firenze"></div>
+                <div class="hero-img hero-img--napoli"></div>
+                <div class="hero-img hero-img--palermo"></div>
+                <div class="hero-img hero-img--palawan"></div>
+            </div>
+        </section>
+
+        <!-- STAYS HEADER -->
+        <section class="stays-header" id="stays-header" aria-live="polite"> <!-- nascosto come default, mostrato tramite JS al click su una card "Mostra tutto"  -->
+            <p class="stays-count"><span id="stays-count">10</span> stays</p>
+            <h2 class="stays-title">
+                Stays in <span id="stays-city">Genova</span>
+                <button class="stays-add" type="button" aria-label="Aggiungi">+</button>
+            </h2>
+            <div class="stays-filters">
+                <button class="stays-pill" type="button" data-filter="available">Available houses</button>
+                <button class="stays-pill" type="button" data-filter="booked">Booked houses</button>
+                <button class="stays-pill active" type="button" data-filter="all">All houses</button>
+            </div>
+            <p class="stays-note">Enter dates and number of guests to see the total price per night.</p>
+            <p class="stays-covid">Review COVID-19 travel restrictions before you book. <a href="#">Learn more</a></p>
+        </section>
+
         <section class="places-section mb-5 mt-5"> <!-- SECTION 1 -->
             <div class="carousel-top-bar d-flex justify-content-between align-items-center mb-3">
 
@@ -421,7 +449,8 @@
 
                     <div class="col-10 col-sm-6 col-md-4 col-lg-3 col-xl-2 flex-shrink-0 px-2">
                         <div
-                            class="card-show-all d-flex flex-column align-items-center justify-content-center rounded-4 shadow-sm border bg-white text-decoration-none">
+                            class="card-show-all d-flex flex-column align-items-center justify-content-center rounded-4 shadow-sm border bg-white text-decoration-none"
+                            role="button" tabindex="0" data-city="Barcellona">
                             <div class="collage-container">
                                 <img src="./assets/barcellona/barcellona1.avif" class="collage-img img-left" alt="Barcellona"> <!-- SINISTRA -->
                                 <img src="./assets/barcellona/barcellona9.avif" class="collage-img img-center" alt="Barcellona"> <!-- CENTRO -->
@@ -712,7 +741,7 @@
 
                             <div class="card-info">
                                 <h3 class="fs-6 fw-bold mb-0">
-                                    <a href="#" class=" text-decoration-none text-dark">Appartamento · Barcellona</a>
+                                    <a href="#" class=" text-decoration-none text-dark">Appartamento · Parigi</a>
                                 </h3>
                                 <p class="text-muted small mb-0">11-13 dic · Host privato</p>
                                 <div class="d-flex gap-3 align-items-center">
@@ -730,7 +759,8 @@
 
                     <div class="col-10 col-sm-6 col-md-4 col-lg-3 col-xl-2 flex-shrink-0 px-2">
                         <div
-                            class="card-show-all d-flex flex-column align-items-center justify-content-center rounded-4 shadow-sm border bg-white text-decoration-none">
+                            class="card-show-all d-flex flex-column align-items-center justify-content-center rounded-4 shadow-sm border bg-white text-decoration-none"
+                            role="button" tabindex="0" data-city="Parigi">
                             <div class="collage-container">
                                 <img src="./assets/parigi/parigi1.avif" class="collage-img img-left" alt="parigi">
                                 <img src="./assets/parigi/parigi6.avif" class="collage-img img-center" alt="parigi">
@@ -1039,7 +1069,8 @@
 
                     <div class="col-10 col-sm-6 col-md-4 col-lg-3 col-xl-2 flex-shrink-0 px-2">
                         <div
-                            class="card-show-all d-flex flex-column align-items-center justify-content-center rounded-4 shadow-sm border bg-white text-decoration-none">
+                            class="card-show-all d-flex flex-column align-items-center justify-content-center rounded-4 shadow-sm border bg-white text-decoration-none"
+                            role="button" tabindex="0" data-city="Firenze">
                             <div class="collage-container">
                                 <img src="./assets/firenze/firenze1.avif" class="collage-img img-left" alt="Firenze">
                                 <img src="./assets/firenze/firenze7.avif" class="collage-img img-center" alt="Firenze">
@@ -1348,7 +1379,8 @@
 
                     <div class="col-10 col-sm-6 col-md-4 col-lg-3 col-xl-2 flex-shrink-0 px-2">
                         <div
-                            class="card-show-all d-flex flex-column align-items-center justify-content-center rounded-4 shadow-sm border bg-white text-decoration-none">
+                            class="card-show-all d-flex flex-column align-items-center justify-content-center rounded-4 shadow-sm border bg-white text-decoration-none"
+                            role="button" tabindex="0" data-city="Napoli">
                             <div class="collage-container">
                                 <img src="./assets/napoli/napoli2.webp" class="collage-img img-left" alt="Napoli">
                                 <img src="./assets/napoli/napoli6.avif" class="collage-img img-center" alt="Napoli">
@@ -1657,7 +1689,8 @@
 
                     <div class="col-10 col-sm-6 col-md-4 col-lg-3 col-xl-2 flex-shrink-0 px-2">
                         <div
-                            class="card-show-all d-flex flex-column align-items-center justify-content-center rounded-4 shadow-sm border bg-white text-decoration-none">
+                            class="card-show-all d-flex flex-column align-items-center justify-content-center rounded-4 shadow-sm border bg-white text-decoration-none"
+                            role="button" tabindex="0" data-city="Palermo">
                             <div class="collage-container">
                                 <img src="./assets/appartaments/apart1.avif" class="collage-img img-left" alt="Palermo">
                                 <img src="./assets/appartaments/apart10.avif" class="collage-img img-center" alt="Palermo">
