@@ -50,10 +50,14 @@ const monthsData = [ /* DATI per i MESI */
   {
     name: "Giugno",
     days: 30,
+    month: 5, // indice mese 0-based (Giugno = 5), per calcolare il primo weekday
+    year: 2026,
   },
   {
     name: "Luglio",
     days: 31,
+    month: 6, // Luglio = 6
+    year: 2026,
   },
 ];
 
@@ -76,7 +80,7 @@ const guestState = { // lo stato inizio
 };
 
 /* ho migliorato il codice di Antonio per far facilitare il render di HTML */
-function weekdaysHTML() { // SETTIMANE
+function renderWeekdays() { // SETTIMANE
   return ["L", "M", "M", "G", "V", "S", "D"]
     .map(function (d) {
       return `<span>${d}</span>`;
@@ -84,24 +88,29 @@ function weekdaysHTML() { // SETTIMANE
     .join("");
 }
 
-function monthHTML(month) { // MESI
+function renderMonth(month) { // MESI
   let days = "";
+  // celle vuote iniziali per allineare il giorno 1 alla colonna del weekday giusto (L=0 ... D=6)
+  const firstWeekday = (new Date(month.year, month.month, 1).getDay() + 6) % 7;
+  for (let i = 0; i < firstWeekday; i++) {
+    days += `<span class="day-empty" aria-hidden="true"></span>`;
+  }
   for (let i = 1; i <= month.days; i++) {
     days += `<button class="day-btn" type="button" data-day="${i}" data-month="${month.name}">${i}</button>`;
   }
   return `
     <div class="month">
       <h4>${month.name}</h4>
-      <div class="weekdays">${weekdaysHTML()}</div>
+      <div class="weekdays">${renderWeekdays()}</div>
       <div class="days-grid">${days}</div>
     </div>`;
 }
 
-function calendarHTML() { // CALENDARIO
-  return `<div class="months-container">${monthsData.map(monthHTML).join("")}</div>`;
+function renderCalendar() { // CALENDARIO
+  return `<div class="months-container">${monthsData.map(renderMonth).join("")}</div>`;
 }
 
-function guestRowsHTML() { // GUEST
+function renderGuestRows() { // GUEST
   return guestTypes
     .map(function (g) {
       return `
@@ -120,7 +129,7 @@ function guestRowsHTML() { // GUEST
     .join("");
 }
 
-function destinationListHTML() { // DESTINAZIONI
+function renderDestinationList() { // DESTINAZIONI
   return destinations
     .map(function (d, i) {
       return `
@@ -188,6 +197,15 @@ function wireGuestCounters(scope, onChange) {
   refresh(); // stato iniziale coerente con guestState (es. "+" bambini disabilitato senza adulti)
 }
 
+/* Calendario, selezione di un giorno dentro un calendario.
+Toglie .selected dagli altri giorni e lo applica a quello cliccato. */
+function selectDay(root, dayBtn) {
+  root.querySelectorAll(".day-btn.selected").forEach(function (b) {
+    b.classList.remove("selected");
+  });
+  dayBtn.classList.add("selected");
+}
+
 /* NAVBAR - Gestione pulsante attivo */
 const dropdown = document.getElementById("dropdown-container");
 const searchBar = document.querySelector(".search-bar");
@@ -206,10 +224,10 @@ const desktopPanels = {
     </div>`;
   },
   "date-btn": function () {
-    return `<div class="calendar-menu">${calendarHTML()}</div>`;
+    return `<div class="calendar-menu">${renderCalendar()}</div>`;
   },
   "guest-btn": function () {
-    return `<div class="guest-menu">${guestRowsHTML()}</div>`;
+    return `<div class="guest-menu">${renderGuestRows()}</div>`;
   },
 };
 
@@ -285,6 +303,18 @@ if (dropdown && searchBar) {
   });
 }
 
+/* Pannello "Date" su desktop, selezione di un giorno nel calendario su #dropdown-container
+(elemento stabile) così funziona anche se il contenuto viene rigenerato a ogni apertura. */
+if (dropdown) {
+  dropdown.addEventListener("click", function (e) {
+    const dayBtn = e.target.closest(".day-btn");
+    if (!dayBtn || !dropdown.contains(dayBtn)) return;
+    selectDay(dropdown, dayBtn);
+    const summary = document.querySelector("#date-btn p");
+    if (summary) summary.textContent = `${dayBtn.dataset.day} ${dayBtn.dataset.month}`;
+  });
+}
+
 /* Selezionando una categoria nella navbar, la STESSA categoria diventa
    reponsive sia per: Desktop, tablet, mobile e modale. */
 function setupDependentCategories(selectors) {
@@ -314,6 +344,13 @@ function setupDependentCategories(selectors) {
 }
 setupDependentCategories([".nav-item", ".mobile-cat", ".modal-cat"]);
 
+/* Pulsante di ricerca: apre la pagina room in una nuova scheda non usando il tag <a>*/
+document.querySelectorAll(".search-btn").forEach(function (btn) {
+  btn.addEventListener("click", function () {
+    window.open("./room.html", "_blank");
+  });
+});
+
 /* SEARCH MODALE per mobile */
 const searchModalEl = document.getElementById("searchModal");
 
@@ -328,9 +365,9 @@ if (searchModalEl) {
   const panels = searchModalEl.querySelectorAll(".acc-panel");
 
   /* Popolamento contenuti */
-  destListEl.innerHTML = destinationListHTML();
-  calendarEl.innerHTML = calendarHTML();
-  guestsEl.innerHTML = guestRowsHTML();
+  destListEl.innerHTML = renderDestinationList();
+  calendarEl.innerHTML = renderCalendar();
+  guestsEl.innerHTML = renderGuestRows();
 
   function openAccPanel(panel) { // Accordion: un solo pannello aperto alla volta
     panels.forEach(function (p) {
@@ -349,11 +386,12 @@ if (searchModalEl) {
   const dovePanel = searchModalEl.querySelector('[data-panel="dove"]');
   searchModalEl.addEventListener("show.bs.modal", function () {
     openAccPanel(dovePanel);
-    guestsEl.querySelectorAll(".guest-row").forEach(function (row) {
-      row.querySelector(".counter-value").textContent =
-        guestState[row.dataset.guest];
-    });
+    // Ricrea le righe ospiti: così sia i valori sia lo stato disabilitato dei +/- restano
+    // coerenti con guestState anche se è stato cambiato dal pannello desktop.
+    guestsEl.innerHTML = renderGuestRows();
+    wireGuestCounters(guestsEl, updateChiValue);
     updateChiValue();
+    applyDestFilter();
   });
 
   destListEl.querySelectorAll(".dest-item").forEach(function (item) { // Una volta riempiti i dati, passa al prossimo modale: DOVE, QUANDO, CHI
@@ -365,6 +403,23 @@ if (searchModalEl) {
     });
   });
 
+  calendarEl.addEventListener("click", function (e) { // QUANDO: scegli una data e passa a "Chi"
+    const dayBtn = e.target.closest(".day-btn");
+    if (!dayBtn) return;
+    selectDay(calendarEl, dayBtn);
+    quandoValue.textContent = `${dayBtn.dataset.day} ${dayBtn.dataset.month}`;
+    openAccPanel(searchModalEl.querySelector('[data-panel="chi"]'));
+  });
+
+  function applyDestFilter() { // DOVE: filtra le destinazioni suggerite in base al testo digitato
+    const q = (doveInput ? doveInput.value : "").trim().toLowerCase();
+    destListEl.querySelectorAll(".dest-item").forEach(function (item) {
+      const title = destinations[item.dataset.dest].title.toLowerCase();
+      item.style.display = !q || title.includes(q) ? "" : "none";
+    });
+  }
+  if (doveInput) doveInput.addEventListener("input", applyDestFilter);
+
   function updateChiValue() { //  Contatori ospiti e aggiorna riepilogo "Chi"
     const total = guestState.adulti + guestState.bambini;
     chiValue.textContent =
@@ -375,11 +430,12 @@ if (searchModalEl) {
   searchModalEl.querySelector("#modal-clear").addEventListener("click", function () { // Cancella tutto (reset button)
     guestState.adulti = 0;
     guestState.bambini = 0;
-    guestsEl.innerHTML = guestRowsHTML();
+    guestsEl.innerHTML = renderGuestRows();
     wireGuestCounters(guestsEl, updateChiValue);
 
     doveValue.textContent = "Cerca destinazioni";
     if (doveInput) doveInput.value = "";
+    applyDestFilter(); // ripristina l'elenco completo delle destinazioni
     quandoValue.textContent = "Aggiungi date";
     chiValue.textContent = "Aggiungi ospiti";
 
@@ -581,17 +637,65 @@ function setupBookingDrawer() { // prenotazione mobile (la barra in basso apre e
 }
 setupBookingDrawer();
 
-function fillRoomCalendars() { // Riempie i dropdown CHECK-IN / CHECK-OUT con un calendario statico
+function fillRoomCalendars() { // Riempie i dropdown CHECK-IN / CHECK-OUT con un calendario (Luglio 2026)
   let days = "";
+  const firstWeekday = (new Date(2026, 6, 1).getDay() + 6) % 7; // allinea il giorno 1 (L=0)
+  for (let i = 0; i < firstWeekday; i++) {
+    days += `<span class="day-empty" aria-hidden="true"></span>`;
+  }
   for (let i = 1; i <= 31; i++) {
-    days += `<button class="day-btn" type="button">${i}</button>`;
+    days += `<button class="day-btn" type="button" data-day="${i}">${i}</button>`;
   }
   const calendar = `<div class="calendar-menu"><div class="month"><h4>Luglio 2026</h4><div class="weekdays"><span>L</span><span>M</span><span>M</span><span>G</span><span>V</span><span>S</span><span>D</span></div><div class="days-grid">${days}</div></div></div>`;
   document.querySelectorAll(".room-date-dd").forEach(function (el) {
     el.innerHTML = calendar;
+    el.addEventListener("click", function (e) { // CHECK-IN / CHECK-OUT: scegli una data e chiudi il dropdown
+      const dayBtn = e.target.closest(".day-btn");
+      if (!dayBtn) return;
+      selectDay(el, dayBtn);
+      const field = el.closest(".dropdown");
+      if (!field) return;
+      const summary = field.querySelector('[data-bs-toggle="dropdown"] p');
+      if (summary) summary.textContent = `${dayBtn.dataset.day} luglio`;
+      const toggle = field.querySelector('[data-bs-toggle="dropdown"]');
+      if (toggle && window.bootstrap) {
+        bootstrap.Dropdown.getOrCreateInstance(toggle).hide();
+      }
+    });
   });
 }
 fillRoomCalendars();
+
+/* Contatore OSPITI della booking card (room.html): aggiustato
+e aggiorna l'etichetta del pulsante su index.html non esiste .room-guest-dd → esce. */
+function setupRoomGuests() {
+  const dd = document.querySelector(".room-guest-dd");
+  if (!dd) return;
+  const field = dd.closest(".dropdown");
+  const summary = field ? field.querySelector('[data-bs-toggle="dropdown"] p') : null;
+  const updateSummary = function () {
+    const total = guestState.adulti + guestState.bambini;
+    if (summary) {
+      summary.textContent =
+        total > 0 ? `${total} ospit${total > 1 ? "i" : "e"}` : "Aggiungi ospiti";
+    }
+  };
+  const render = function () { // (ri)crea le righe e le ricollega: numeri e stato +/- coerenti con guestState
+    dd.innerHTML = `<div class="guest-menu">${renderGuestRows()}</div>`;
+    wireGuestCounters(dd, updateSummary);
+  };
+  render();
+  updateSummary();
+  // Riallinea i numeri all'apertura: lo stato può essere stato cambiato altrove (modale di ricerca)
+  const toggle = field ? field.querySelector('[data-bs-toggle="dropdown"]') : null;
+  if (toggle) {
+    toggle.addEventListener("show.bs.dropdown", function () {
+      render();
+      updateSummary();
+    });
+  }
+}
+setupRoomGuests();
 
 /* "MOSTRA TUTTO": mostra l'header "Stays in <città>" e filtra la sezione cliccata */
 function setupStaysHeader() {
@@ -634,10 +738,12 @@ function setupStaysHeader() {
     if (e.matches) {
       if (header.classList.contains("is-open")) {
         document.body.classList.add("has-hero");
+        if (hero) hero.setAttribute("aria-hidden", "false");
         startHero();
       }
     } else {
       stopHero();
+      if (hero) hero.setAttribute("aria-hidden", "true"); // sotto 841px l'hero è nascosto via CSS
     }
   });
 
@@ -693,6 +799,7 @@ function setupStaysHeader() {
     const showHero = !!hero && desktopMq.matches;
     if (showHero) {
       document.body.classList.add("has-hero");
+      hero.setAttribute("aria-hidden", "false"); // ora visibile: leggibile dagli screen reader
       startHero();
     }
 
